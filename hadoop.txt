@@ -1,0 +1,37 @@
+cd $HADOOP_HOME/sbin && ./start-all.sh
+jps
+hadoop fs -ls /
+hadoop fs -mkdir /prog2
+hadoop fs -ls /
+hadoop fs -touchz /empty.txt
+hadoop fs -ls /
+hadoop fs -copyFromLocal /home/hdoop/t1.txt /prog2/f1.txt
+hadoop fs -ls /
+
+hadoop fs -put /home/hdoop/t1.txt /prog2/f2.txt
+hadoop fs -ls /prog2
+
+hadoop fs -cat /prog2/f1.txt
+hadoop fs -copyToLocal /prog2
+ls
+cd prog2
+ls
+cd ..
+hadoop fs -moveFromLocal prog2 /prog3
+hadoop fs -ls /
+
+hadoop fs -cp /prog2/f1.txt /prog3/f1_copy.txt
+hadoop fs -cat /prog3/f1_copy.txt
+hadoop fs -ls /prog3
+hadoop fs -ls /prog2
+hadoop fs -mv /prog3/f1_copy.txt /prog2
+hadoop fs -ls /prog2
+hadoop fs -ls /prog3
+hadoop fs -du /prog2
+
+hadoop fs -dus /prog2
+hadoop fs -stat /prog2
+cd ~
+pwd/home/hdoop
+hadoop fs -appendToFile t1.txt t2.txt new.txt
+hadoop fs -cat new.txt
