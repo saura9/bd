@@ -1,0 +1,96 @@
+Create a collection named "FruitsMarket" under the "Market" database with each document in the
+format shown below Table 1
+Table 1: FruitsMarket Table
+MarketName Number of Employees Types of Fruits Total Sales Prot(%) Rating
+String Integer String Array Integer Integer String
+BasketShop 20 ["Banana", "Apple"] 50000 20 "A"
+2 Queries
+1. Populate the database with atleast 15 documents
+2. List all the Markets having the fruit "Mango". Show only the Market name and Rating as
+output
+3. List all the Markets with number of Employees greater than 20, prot greater than 35% and
+having Rating "A"
+4. Update all the Markets rating with prot greater than 60% as 'A'
+5. Count the number of Markets which has a rating "B" and having employee count greater than
+30
+6. Delete a Market which is having rating "C" and does not having the fruit "Banana"
+7. Update all the Markets whose rating is "B" with a bonus prot of 10%
+8. Remove the Rating for all the Markets which are having rating "C"
+9. Group all the Markets by their Rating and calculate the total number of employees using
+Aggregation
+10. Apply the map-reduce to Group all the Markets by their Rating and calculate the total number
+of employees
+ChatGPT
+To perform the requested operations on the "FruitsMarket" collection under the "Market" database, you can use MongoDB queries and operations. Here's an example of how you can achieve each of the given tasks:
+
+Populate the database with at least 15 documents:
+javascript
+Copy code
+db.FruitsMarket.insertMany([
+  {
+    MarketName: "BasketShop",
+    "Number of Employees": 20,
+    "Types of Fruits": ["Banana", "Apple"],
+    "Total Sales": 50000,
+    "Profit(%)": 20,
+    Rating: "A"
+  },
+  // Add more documents as needed
+]);
+List all the Markets having the fruit "Mango". Show only the Market name and Rating as output:
+javascript
+Copy code
+db.FruitsMarket.find({ "Types of Fruits": "Mango" }, { MarketName: 1, Rating: 1 });
+List all the Markets with the number of Employees greater than 20, profit greater than 35%, and having Rating "A":
+javascript
+Copy code
+db.FruitsMarket.find({
+  "Number of Employees": { $gt: 20 },
+  "Profit(%)": { $gt: 35 },
+  Rating: "A"
+});
+Update all the Markets' rating with profit greater than 60% as 'A':
+javascript
+Copy code
+db.FruitsMarket.updateMany({ "Profit(%)": { $gt: 60 } }, { $set: { Rating: "A" } });
+Count the number of Markets which have a rating "B" and have an employee count greater than 30:
+javascript
+Copy code
+db.FruitsMarket.countDocuments({ Rating: "B", "Number of Employees": { $gt: 30 } });
+Delete a Market which has a rating "C" and does not have the fruit "Banana":
+javascript
+Copy code
+db.FruitsMarket.deleteOne({ Rating: "C", "Types of Fruits": { $ne: "Banana" } });
+Update all the Markets whose rating is "B" with a bonus profit of 10%:
+javascript
+Copy code
+db.FruitsMarket.updateMany({ Rating: "B" }, { $inc: { "Profit(%)": 10 } });
+Remove the Rating for all the Markets which have a rating "C":
+javascript
+Copy code
+db.FruitsMarket.updateMany({ Rating: "C" }, { $unset: { Rating: "" } });
+Group all the Markets by their Rating and calculate the total number of employees using Aggregation:
+javascript
+Copy code
+db.FruitsMarket.aggregate([
+  {
+    $group: {
+      _id: "$Rating",
+      totalEmployees: { $sum: "$Number of Employees" }
+    }
+  }
+]);
+Apply the Map-Reduce to group all the Markets by their Rating and calculate the total number of employees:
+Map function:
+javascript
+Copy code
+var mapFunc = function() {
+  emit(this.Rating, this["Number of Employees"]);
+};
+
+var reduceFunc = function(key, values) {
+  return Array.sum(values);
+};
+
+db.FruitsMarket.mapReduce(mapFunc, reduceFunc, { out: "market_employees_by_rating" });
+db.market_employees_by_rating.find();

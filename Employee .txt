@@ -1,0 +1,220 @@
+Create a collection named "Employee" under the "EmployeeDB" database with each document in
+the format shown below Table 1
+Table 1: Document Format
+Name Age Salary in INR Designation Role
+{Firstname,
+middlename,
+lastname}
+25-40 20000 - 75000 Employee Designation
+[Manager, "Team Lead",
+"Software Developer",
+"Tester", "UI Designer"]
+
+To create a collection named "Employee" under the "EmployeeDB" database with each document in the format mentioned in Table 1, you can use MongoDB commands. Here's an example of how you can accomplish this:
+
+
+use EmployeeDB  // Switch to the "EmployeeDB" database
+
+db.Employee.insertOne({  // Insert a single document into the "Employee" collection
+  Name: {
+    Firstname: "John",
+    Middlename: "Doe",
+    Lastname: "Smith"
+  },
+  Age: "30-35",
+  Salary: "50000",
+  Designation: "Employee",
+  Role: ["Manager", "Team Lead", "Software Developer", "Tester", "UI Designer"]
+})
+
+
+
+
+
+To populate the "Employee" collection with at least 15 documents and perform the requested queries, you can use MongoDB commands. Here's an example:
+
+Populating the database with at least 15 documents:
+javascript
+
+// Inserting 15 documents into the "Employee" collection
+db.Employee.insertMany([
+  {
+    Name: {
+      Firstname: "John",
+      Middlename: "Kumar",
+      Lastname: "Smith"
+    },
+    Age: "28",
+    Salary: "30000",
+    Designation: "Employee",
+    Role: ["Manager", "Software Developer"]
+  },
+  // Add more documents here to reach a total of 15
+  // ...
+])
+You can add more documents in a similar format to reach a total of at least 15 documents.
+
+Listing all records with salary in the range of 20000 - 35000 (Exclusive):
+
+// Find all documents with salary in the specified range
+db.Employee.find({
+  Salary: { $gt: "20000", $lt: "35000" }
+})
+This query will return all the records in the "Employee" collection that have a salary between 20000 and 35000 exclusive.
+
+Listing all employees whose middle name is "Kumar":
+
+// Find all documents where the middle name is "Kumar"
+db.Employee.find({
+  "Name.Middlename": "Kumar"
+})
+This query will return all the employees in the "Employee" collection whose middle name is "Kumar".
+
+Counting the number of employees with the role "Manager":
+
+// Count the number of documents where the role array contains "Manager"
+db.Employee.count({
+  Role: "Manager"
+})
+Make sure to adjust the field values and add more documents as needed to meet your specific requirements.
+
+
+
+
+
+User
+5. Find out all the documents who have age < 35 and salary in the range of 30000-35000
+6. Delete an Employee whose "Firstname" is "Rajesh" and having the designation as "Scientist"
+7. Update all the Employees whose role is "Team Lead" with a salary of 55650 INR
+8. Update the Employee by name "Kamalakar" and remove the designation eld from the documen
+use EmployeeDB  // Switch to the "EmployeeDB" database
+
+// Find all documents with age < 35 and salary in the specified range
+db.Employee.find({
+  Age: { $lt: "35" },
+  Salary: { $gte: "30000", $lte: "35000" }
+})
+This query will return all the documents in the "Employee" collection that have an age less than 35 and a salary between 30000 and 35000 (inclusive).
+
+Deleting an Employee with Firstname "Rajesh" and designation "Scientist":
+javascript
+Copy code
+use EmployeeDB  // Switch to the "EmployeeDB" database
+
+// Delete the document with Firstname "Rajesh" and Designation "Scientist"
+db.Employee.deleteOne({
+  "Name.Firstname": "Rajesh",
+  Designation: "Scientist"
+})
+This command will delete the document from the "Employee" collection where the Firstname is "Rajesh" and the Designation is "Scientist".
+
+Updating all Employees with role "Team Lead" to have a salary of 55650 INR:
+javascript
+Copy code
+use EmployeeDB  // Switch to the "EmployeeDB" database
+
+// Update all documents with Role "Team Lead" and set Salary to 55650
+db.Employee.updateMany(
+  { Role: "Team Lead" },
+  { $set: { Salary: "55650" } }
+)
+This command will update all the documents in the "Employee" collection with the Role "Team Lead" and set their Salary to 55650 INR.
+
+Updating the Employee named "Kamalakar" and removing the designation field:
+javascript
+Copy code
+use EmployeeDB  // Switch to the "EmployeeDB" database
+
+// Update the document with Name "Kamalakar" and remove the Designation field
+db.Employee.updateOne(
+  { "Name.Firstname": "Kamalakar" },
+  { $unset: { Designation: "" } }
+)
+This command will update the document in the "Employee" collection with the Firstname "Kamalakar" and remove the Designation field from the document.
+
+Please note that in all the above commands, you may need to adjust the field values to match your specific data.
+
+
+
+
+
+User
+9. Group all the Employees by their age(common age should be there) and calculate the average
+salary obtained in the each group
+ChatGPT
+To group all the employees by their age and calculate the average salary obtained in each group, you can use the aggregation framework in MongoDB. Here's an example query:
+
+javascript
+Copy code
+use EmployeeDB  // Switch to the "EmployeeDB" database
+
+db.Employee.aggregate([
+  {
+    $group: {
+      _id: "$Age",  // Grouping by Age
+      averageSalary: { $avg: { $toInt: "$Salary" } }  // Calculating the average salary in each group
+    }
+  }
+])
+In the above query, we're using the $group stage to group the employees by their age ($Age field). The _id field is used to specify the grouping key. We then calculate the average salary in each group using the $avg aggregation operator. The $toInt operator is used to convert the Salary field from a string to an integer before calculating the average.
+
+This query will return a result where each document represents a group of employees with a common age. It will include the _id field, which represents the age, and the averageSalary field, which represents the average salary obtained in that age group.
+
+Make sure to adjust the field names according to your actual field names in the "Employee" collection.
+
+
+
+
+
+User
+10. Apply the map-reduce to perform the above operation and obtain the results
+ChatGPT
+To perform the grouping and average salary calculation using map-reduce, you can use the following code:
+
+javascript
+Copy code
+use EmployeeDB  // Switch to the "EmployeeDB" database
+
+// Map function
+var mapFunction = function() {
+  var key = this.Age;
+  var value = {
+    count: 1,
+    totalSalary: parseInt(this.Salary)
+  };
+  emit(key, value);
+};
+
+// Reduce function
+var reduceFunction = function(key, values) {
+  var reducedValue = {
+    count: 0,
+    totalSalary: 0
+  };
+
+  values.forEach(function(value) {
+    reducedValue.count += value.count;
+    reducedValue.totalSalary += value.totalSalary;
+  });
+
+  return reducedValue;
+};
+
+// Finalize function (to calculate average salary)
+var finalizeFunction = function(key, reducedValue) {
+  reducedValue.averageSalary = reducedValue.totalSalary / reducedValue.count;
+  return reducedValue;
+};
+
+// Execute map-reduce operation
+db.Employee.mapReduce(
+  mapFunction,
+  reduceFunction,
+  {
+    out: "employee_age_salary_average",  // Output collection name
+    finalize: finalizeFunction
+  }
+);
+
+// Retrieve the results from the output collection
+db.employee_age_salary_average.find();
