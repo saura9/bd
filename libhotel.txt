@@ -1,0 +1,208 @@
+To perform the requested operations on the "Books" collection under the "LibraryDB" database, you can use MongoDB queries and operations. Here's an example of how you can achieve each of the given tasks:
+
+Populate the database with at least 15 documents:
+javascript
+Copy code
+db.Books.insertMany([
+  {
+    name: "Understanding bioethics and the law",
+    book_id: "B01",
+    book_author: ["Schaller, Barry R"],
+    publication_year: 2008,
+    genre: "Philosophy",
+    noofcopies: 3,
+    review: "Excellent"
+  },
+  // Add more documents as needed
+]);
+List all the records having Publication_year in the range of 2000-2012:
+javascript
+Copy code
+db.Books.find({ publication_year: { $gte: 2000, $lte: 2012 } });
+List all the books belonging to the Genre Fiction:
+javascript
+Copy code
+db.Books.find({ genre: "Fiction" });
+Count the number of books whose review is "Average":
+javascript
+Copy code
+db.Books.count({ review: "Average" });
+Find out all the books that have less than 3 copies and publication_year in the range of 1995-2003:
+javascript
+Copy code
+db.Books.find({ noofcopies: { $lt: 3 }, publication_year: { $gte: 1995, $lte: 2003 } });
+Delete a book from the database whose Book_id is B014:
+javascript
+Copy code
+db.Books.deleteOne({ book_id: "B014" });
+Update the review of the books to "Excellent" if they have more than 5 copies:
+javascript
+Copy code
+db.Books.updateMany({ noofcopies: { $gt: 5 } }, { $set: { review: "Excellent" } });
+Delete the 11th book in the table and update the book id of the next books to reflect this data manipulation operation:
+javascript
+Copy code
+db.Books.deleteOne({}).skip(10); // Deletes the 11th book
+
+// Update the book_id of the next books
+db.Books.updateMany({}, { $inc: { book_id: -1 } });
+Group all the books by their genre and identify the books with the highest review in each genre:
+javascript
+Copy code
+db.Books.aggregate([
+  {
+    $group: {
+      _id: "$genre",
+      highestReview: { $max: "$review" },
+      books: { $push: "$$ROOT" }
+    }
+  }
+]);
+Apply Map-reduce aggregation function to project the books by their names and find the list of genres:
+javascript
+Copy code
+db.Books.mapReduce(
+  function () {
+    emit(this.name, this.genre);
+  },
+  function (key, values) {
+    return values;
+  },
+  {
+    out: { inline: 1 },
+    query: {}
+  }
+);
+Please note that you need to make sure you have a MongoDB connection established and switch to the appropriate database before running these queries.
+
+
+
+
+
+User
+Create a Collection named “restaurants” under the “HotelDB” database with
+each documents in the format shown below.
+Table: Document Format
+Name Restaurant_id Cuisine Address Town Grades
+Hotel
+Name
+Any unique
+number
+Indian
+Italian
+Chinese
+American
+etc
+Building
+No.,
+Street
+Coordinates
+Zip code
+Name of
+Town
+“grade”
+“ Score”
+String int string String
+BSON
+Object
+string String
+Array
+2. Queries
+1. Populate the database with at least 15 documents.
+2. Write a MongoDB query to display the field’s restaurant_id, name,
+town and cuisine for all the documents in the collection restaurant.
+3. Write a MongoDB query to display the fields restaurant_id, name,
+town and cuisine, but exclude the field _id for all the documents in the
+collection restaurant.
+4. Write a MongoDB query to display the entire restaurants which is in
+the town Bengaluru.
+5. Write a MongoDB query to find the restaurants which do not prepare
+any cuisine of 'American' and achieved a score more than 70 and located
+in the longitude less than -65.754168.
+6. Write a MongoDB query to find the restaurant Id, name, borough and
+cuisine for those restaurants which achieved a score which is not more
+than 5.
+7. Update the hotel by name “ARYA BHAVAN” and remove the grades
+filed from documents.
+8. Update the grade of all the Hotels to “A” whose score is more than 7.
+9. Apply Map-reduce aggregation function to project the hotels by their
+names and find the list of cuisines each hotel offers.
+10. Group all the hotels by their towns and identify the hotels with
+highest score in each town.
+ChatGPT
+
+----------------------------------------------
+
+To perform the requested operations on the "restaurants" collection under the "HotelDB" database, you can use MongoDB queries and operations. Here's an example of how you can achieve each of the given tasks:
+
+Populate the database with at least 15 documents:
+javascript
+Copy code
+db.restaurants.insertMany([
+  {
+    restaurant_id: 1,
+    name: "Restaurant 1",
+    town: "Town 1",
+    cuisine: "Indian",
+    address: {
+      building: "Building 1",
+      street: "Street 1",
+      coordinates: {
+        longitude: -65.1234,
+        latitude: 12.5678
+      },
+      zip_code: "12345"
+    },
+    grades: [
+      { grade: "A", score: 90 },
+      { grade: "B", score: 80 },
+      { grade: "C", score: 70 }
+    ]
+  },
+  // Add more documents as needed
+]);
+Write a MongoDB query to display the fields restaurant_id, name, town, and cuisine for all the documents in the collection restaurant:
+javascript
+Copy code
+db.restaurants.find({}, { restaurant_id: 1, name: 1, town: 1, cuisine: 1 });
+Write a MongoDB query to display the fields restaurant_id, name, town, and cuisine, but exclude the field _id for all the documents in the collection restaurant:
+javascript
+Copy code
+db.restaurants.find({}, { _id: 0, restaurant_id: 1, name: 1, town: 1, cuisine: 1 });
+Write a MongoDB query to display the entire restaurants which are in the town Bengaluru:
+javascript
+Copy code
+db.restaurants.find({ town: "Bengaluru" });
+Write a MongoDB query to find the restaurants which do not prepare any cuisine of 'American' and achieved a score more than 70 and located in the longitude less than -65.754168:
+javascript
+Copy code
+db.restaurants.find({
+  cuisine: { $ne: "American" },
+  "grades.score": { $gt: 70 },
+  "address.coordinates.longitude": { $lt: -65.754168 }
+});
+Write a MongoDB query to find the restaurant Id, name, borough, and cuisine for those restaurants which achieved a score which is not more than 5:
+javascript
+Copy code
+db.restaurants.find({ "grades.score": { $not: { $gt: 5 } } }, { restaurant_id: 1, name: 1, borough: 1, cuisine: 1 });
+Update the hotel by name "ARYA BHAVAN" and remove the grades field from documents:
+javascript
+Copy code
+db.restaurants.updateMany({ name: "ARYA BHAVAN" }, { $unset: { grades: "" } });
+Update the grade of all the hotels to "A" whose score is more than 7:
+javascript
+Copy code
+db.restaurants.updateMany({ "grades.score": { $gt: 7 } }, { $set: { "grades.$.grade": "A" } });
+Apply Map-reduce aggregation function to project the hotels by their names and find the list of cuisines each hotel offers:
+javascript
+Copy code
+var mapFunc = function() {
+  emit(this.name, this.cuisine);
+};
+
+var reduceFunc = function(key, values) {
+  return Array.from(new Set(values));
+};
+
+db.restaurants.mapReduce(mapFunc, reduceFunc, { out: "hotel_cuisines" });
+db.hotel_cuisines.find();
