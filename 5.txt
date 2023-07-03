@@ -1,0 +1,83 @@
+
+
+
+Create a database called "salesdb" in Hive:
+sql
+Copy code
+CREATE DATABASE salesdb;
+Create a table named "sales" under the "salesdb" database using the provided CSV file:
+vbnet
+Copy code
+CREATE TABLE salesdb.sales (
+  transaction_id INT,
+  product_name STRING,
+  price DOUBLE,
+  country STRING,
+  state STRING,
+  payment_method STRING
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+STORED AS TEXTFILE;
+Load the data from the CSV file into the "sales" table:
+sql
+Copy code
+LOAD DATA INPATH 'path_to_sales.csv' INTO TABLE salesdb.sales;
+Replace "path_to_sales.csv" with the actual path to the downloaded "sales.csv" file.
+
+Count the number of sales done by each country:
+vbnet
+Copy code
+SELECT country, COUNT(*) AS sales_count
+FROM salesdb.sales
+GROUP BY country;
+Count the number of sales done by each state:
+vbnet
+Copy code
+SELECT state, COUNT(*) AS sales_count
+FROM salesdb.sales
+GROUP BY state;
+Display (Product, name) grouped by product:
+vbnet
+Copy code
+SELECT product_name, COUNT(*) AS sales_count
+FROM salesdb.sales
+GROUP BY product_name;
+Create a separate view for VISA transactions:
+sql
+Copy code
+CREATE VIEW visa_transactions AS
+SELECT *
+FROM salesdb.sales
+WHERE payment_method = 'VISA';
+Create a separate view for Mastercard transactions:
+sql
+Copy code
+CREATE VIEW mastercard_transactions AS
+SELECT *
+FROM salesdb.sales
+WHERE payment_method = 'Mastercard';
+Show all the transactions done in Seattle:
+sql
+Copy code
+SELECT *
+FROM salesdb.sales
+WHERE state = 'Seattle';
+Find the max number of transactions done within the state of Ontario:
+sql
+Copy code
+SELECT MAX(transaction_id) AS max_transactions
+FROM salesdb.sales
+WHERE state = 'Ontario';
+Find the number of transactions whose price is between 1500 and 3600:
+sql
+Copy code
+SELECT COUNT(*) AS transactions_count
+FROM salesdb.sales
+WHERE price >= 1500 AND price <= 3600;
+List all the transactions done in the United States using Mastercard:
+sql
+Copy code
+SELECT *
+FROM salesdb.sales
+WHERE country = 'United States' AND payment_method = 'Mastercard';
