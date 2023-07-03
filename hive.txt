@@ -1,0 +1,2851 @@
+﻿hdoop@ln-VirtualBox:~$ cd $HADOOP_HOME/sbin 
+hdoop@ln-VirtualBox:~/hadoop-3.2.4/sbin$ ./start-all.sh
+WARNING: Attempting to start all Apache Hadoop daemons as hdoop in 10 seconds.
+WARNING: This is not a recommended production deployment configuration.
+WARNING: Use CTRL-C to abort.
+Starting namenodes on [localhost]
+Starting datanodes
+Starting secondary namenodes [ln-VirtualBox]
+2023-07-02 23:09:02,501 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Starting resourcemanager
+Starting nodemanagers
+hdoop@ln-VirtualBox:~/hadoop-3.2.4/sbin$ jps
+3136 NodeManager
+2577 DataNode
+2469 NameNode
+3496 Jps
+2760 SecondaryNameNode
+3019 ResourceManager
+hdoop@ln-VirtualBox:~/hadoop-3.2.4/sbin$ hive
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/home/hdoop/apache-hive-3.1.2-bin/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/home/hdoop/hadoop-3.2.4/share/hadoop/common/lib/slf4j-reload4j-1.7.35.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory]
+Hive Session ID = 13bf46a4-1e26-4942-a6d0-449d1d0f4d34
+
+Logging initialized using configuration in jar:file:/home/hdoop/apache-hive-3.1.2-bin/lib/hive-common-3.1.2.jar!/hive-log4j2.properties Async: true
+Exception in thread "main" java.lang.RuntimeException: org.apache.hadoop.hdfs.server.namenode.SafeModeException: Cannot create directory /tmp/hive/hdoop/13bf46a4-1e26-4942-a6d0-449d1d0f4d34. Name node is in safe mode.
+The reported blocks 42 needs additional 3 blocks to reach the threshold 0.9990 of total blocks 46.
+The minimum number of live datanodes is not required. Safe mode will be turned off automatically once the thresholds have been reached. NamenodeHostName:localhost
+	at org.apache.hadoop.hdfs.server.namenode.FSNamesystem.newSafemodeException(FSNamesystem.java:1515)
+	at org.apache.hadoop.hdfs.server.namenode.FSNamesystem.checkNameNodeSafeMode(FSNamesystem.java:1502)
+	at org.apache.hadoop.hdfs.server.namenode.FSNamesystem.mkdirs(FSNamesystem.java:3263)
+	at org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.mkdirs(NameNodeRpcServer.java:1165)
+	at org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolServerSideTranslatorPB.mkdirs(ClientNamenodeProtocolServerSideTranslatorPB.java:723)
+	at org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos$ClientNamenodeProtocol$2.callBlockingMethod(ClientNamenodeProtocolProtos.java)
+	at org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:549)
+	at org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:518)
+	at org.apache.hadoop.ipc.RPC$Server.call(RPC.java:1086)
+	at org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:1035)
+	at org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:963)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:422)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1762)
+	at org.apache.hadoop.ipc.Server$Handler.run(Server.java:2960)
+
+	at org.apache.hadoop.hive.ql.session.SessionState.start(SessionState.java:651)
+	at org.apache.hadoop.hive.ql.session.SessionState.beginStart(SessionState.java:591)
+	at org.apache.hadoop.hive.cli.CliDriver.run(CliDriver.java:747)
+	at org.apache.hadoop.hive.cli.CliDriver.main(CliDriver.java:683)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.hadoop.util.RunJar.run(RunJar.java:323)
+	at org.apache.hadoop.util.RunJar.main(RunJar.java:236)
+Caused by: org.apache.hadoop.hdfs.server.namenode.SafeModeException: Cannot create directory /tmp/hive/hdoop/13bf46a4-1e26-4942-a6d0-449d1d0f4d34. Name node is in safe mode.
+The reported blocks 42 needs additional 3 blocks to reach the threshold 0.9990 of total blocks 46.
+The minimum number of live datanodes is not required. Safe mode will be turned off automatically once the thresholds have been reached. NamenodeHostName:localhost
+	at org.apache.hadoop.hdfs.server.namenode.FSNamesystem.newSafemodeException(FSNamesystem.java:1515)
+	at org.apache.hadoop.hdfs.server.namenode.FSNamesystem.checkNameNodeSafeMode(FSNamesystem.java:1502)
+	at org.apache.hadoop.hdfs.server.namenode.FSNamesystem.mkdirs(FSNamesystem.java:3263)
+	at org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.mkdirs(NameNodeRpcServer.java:1165)
+	at org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolServerSideTranslatorPB.mkdirs(ClientNamenodeProtocolServerSideTranslatorPB.java:723)
+	at org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos$ClientNamenodeProtocol$2.callBlockingMethod(ClientNamenodeProtocolProtos.java)
+	at org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:549)
+	at org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:518)
+	at org.apache.hadoop.ipc.RPC$Server.call(RPC.java:1086)
+	at org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:1035)
+	at org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:963)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:422)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1762)
+	at org.apache.hadoop.ipc.Server$Handler.run(Server.java:2960)
+
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.apache.hadoop.ipc.RemoteException.instantiateException(RemoteException.java:121)
+	at org.apache.hadoop.ipc.RemoteException.unwrapRemoteException(RemoteException.java:88)
+	at org.apache.hadoop.hdfs.DFSClient.primitiveMkdir(DFSClient.java:2449)
+	at org.apache.hadoop.hdfs.DFSClient.mkdirs(DFSClient.java:2423)
+	at org.apache.hadoop.hdfs.DistributedFileSystem$27.doCall(DistributedFileSystem.java:1338)
+	at org.apache.hadoop.hdfs.DistributedFileSystem$27.doCall(DistributedFileSystem.java:1335)
+	at org.apache.hadoop.fs.FileSystemLinkResolver.resolve(FileSystemLinkResolver.java:81)
+	at org.apache.hadoop.hdfs.DistributedFileSystem.mkdirsInternal(DistributedFileSystem.java:1352)
+	at org.apache.hadoop.hdfs.DistributedFileSystem.mkdirs(DistributedFileSystem.java:1327)
+	at org.apache.hadoop.hive.ql.session.SessionState.createPath(SessionState.java:786)
+	at org.apache.hadoop.hive.ql.session.SessionState.createSessionDirs(SessionState.java:721)
+	at org.apache.hadoop.hive.ql.session.SessionState.start(SessionState.java:627)
+	... 9 more
+Caused by: org.apache.hadoop.ipc.RemoteException(org.apache.hadoop.hdfs.server.namenode.SafeModeException): Cannot create directory /tmp/hive/hdoop/13bf46a4-1e26-4942-a6d0-449d1d0f4d34. Name node is in safe mode.
+The reported blocks 42 needs additional 3 blocks to reach the threshold 0.9990 of total blocks 46.
+The minimum number of live datanodes is not required. Safe mode will be turned off automatically once the thresholds have been reached. NamenodeHostName:localhost
+	at org.apache.hadoop.hdfs.server.namenode.FSNamesystem.newSafemodeException(FSNamesystem.java:1515)
+	at org.apache.hadoop.hdfs.server.namenode.FSNamesystem.checkNameNodeSafeMode(FSNamesystem.java:1502)
+	at org.apache.hadoop.hdfs.server.namenode.FSNamesystem.mkdirs(FSNamesystem.java:3263)
+	at org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.mkdirs(NameNodeRpcServer.java:1165)
+	at org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolServerSideTranslatorPB.mkdirs(ClientNamenodeProtocolServerSideTranslatorPB.java:723)
+	at org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos$ClientNamenodeProtocol$2.callBlockingMethod(ClientNamenodeProtocolProtos.java)
+	at org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:549)
+	at org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:518)
+	at org.apache.hadoop.ipc.RPC$Server.call(RPC.java:1086)
+	at org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:1035)
+	at org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:963)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:422)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1762)
+	at org.apache.hadoop.ipc.Server$Handler.run(Server.java:2960)
+
+	at org.apache.hadoop.ipc.Client.getRpcResponse(Client.java:1612)
+	at org.apache.hadoop.ipc.Client.call(Client.java:1558)
+	at org.apache.hadoop.ipc.Client.call(Client.java:1455)
+	at org.apache.hadoop.ipc.ProtobufRpcEngine$Invoker.invoke(ProtobufRpcEngine.java:231)
+	at org.apache.hadoop.ipc.ProtobufRpcEngine$Invoker.invoke(ProtobufRpcEngine.java:118)
+	at com.sun.proxy.$Proxy28.mkdirs(Unknown Source)
+	at org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolTranslatorPB.mkdirs(ClientNamenodeProtocolTranslatorPB.java:663)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.hadoop.io.retry.RetryInvocationHandler.invokeMethod(RetryInvocationHandler.java:433)
+	at org.apache.hadoop.io.retry.RetryInvocationHandler$Call.invokeMethod(RetryInvocationHandler.java:166)
+	at org.apache.hadoop.io.retry.RetryInvocationHandler$Call.invoke(RetryInvocationHandler.java:158)
+	at org.apache.hadoop.io.retry.RetryInvocationHandler$Call.invokeOnce(RetryInvocationHandler.java:96)
+	at org.apache.hadoop.io.retry.RetryInvocationHandler.invoke(RetryInvocationHandler.java:362)
+	at com.sun.proxy.$Proxy29.mkdirs(Unknown Source)
+	at org.apache.hadoop.hdfs.DFSClient.primitiveMkdir(DFSClient.java:2447)
+	... 18 more
+hdoop@ln-VirtualBox:~/hadoop-3.2.4/sbin$ hadoop dfsadmin -safemode leave
+WARNING: Use of this script to execute dfsadmin is deprecated.
+WARNING: Attempting to execute replacement "hdfs dfsadmin" instead.
+
+2023-07-02 23:10:40,788 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Safe mode is OFF
+hdoop@ln-VirtualBox:~/hadoop-3.2.4/sbin$ hive
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/home/hdoop/apache-hive-3.1.2-bin/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/home/hdoop/hadoop-3.2.4/share/hadoop/common/lib/slf4j-reload4j-1.7.35.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory]
+Hive Session ID = eb425bfb-fb43-499d-81da-25a49b2cc598
+
+Logging initialized using configuration in jar:file:/home/hdoop/apache-hive-3.1.2-bin/lib/hive-common-3.1.2.jar!/hive-log4j2.properties Async: true
+Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. spark, tez) or using Hive 1.X releases.
+Hive Session ID = 60ef2f94-e625-4cda-a034-5ad2647f7808
+hive> show databases;
+OK
+default
+Time taken: 1.057 seconds, Fetched: 1 row(s)
+hive> create database sales;
+OK
+Time taken: 7.509 seconds
+hive> use sales;
+OK
+Time taken: 0.061 seconds
+hive> create table s1(product string,price int, pt string,name string,city string, state string, country string);
+OK
+Time taken: 1.704 seconds
+hive> create table s2(product string,price int, pt string,name string,city string, state string, country string)
+    > row format delimited
+    > fields terminated by ",";
+OK
+Time taken: 0.125 seconds
+hive> desc s2
+    > ;
+OK
+product             	string              	                    
+price               	int                 	                    
+pt                  	string              	                    
+name                	string              	                    
+city                	string              	                    
+state               	string              	                    
+country             	string              	                    
+Time taken: 0.444 seconds, Fetched: 7 row(s)
+hive> LOAD DATA local INPATH '/home/hdoop/Downloads/s.csv' into table s2;
+Loading data to table sales.s2
+OK
+Time taken: 1.54 seconds
+hive> select * from s2
+    > ;
+OK
+Product	NULL	Payment_Type	Name	City	State	Country
+Product1	1200	Mastercard	carolina	Basildon	England	United Kingdom
+Product1	1200	Visa	Betina	Parkville	MO	United States
+Product1	1200	Mastercard	Federica e Andrea	Astoria	OR	United States
+Product1	1200	Visa	Gouya	Echuca	Victoria	Australia
+Product2	3600	Visa	Gerd W	Cahaba Heights	AL	United States
+Product1	1200	Visa	LAURENCE	Mickleton	NJ	United States
+Product1	1200	Mastercard	Fleur	Peoria	IL	United States
+Product1	1200	Mastercard	adam	Martin	TN	United States
+Product1	1200	Mastercard	Renee Elisabeth	Tel Aviv	Tel Aviv	Israel
+Product1	1200	Visa	Aidan	Chatou	Ile-de-France	France
+Product1	1200	Diners	Stacy	New York	NY	United States
+Product1	1200	Amex	Heidi	Eindhoven	Noord-Brabant	Netherlands
+Product1	1200	Mastercard	Sean	Shavano Park	TX	United States
+Product1	1200	Visa	Georgia	Eagle	ID	United States
+Product1	1200	Visa	Richard	Riverside	NJ	United States
+Product1	1200	Diners	Leanne	Julianstown	Meath	Ireland
+Product1	1200	Visa	Janet	Ottawa	Ontario	Canada
+Product1	1200	Diners	barbara	Hyderabad	Andhra Pradesh	India
+Product2	3600	Visa	Sabine	London	England	United Kingdom
+Product1	1200	Diners	Hani	Salt Lake City	UT	United States
+Product1	1200	Visa	Jeremy	Manchester	England	United Kingdom
+Product1	1200	Diners	Janis	Ballynora	Cork	Ireland
+Product1	1200	Mastercard	Nicola	Roodepoort	Gauteng	South Africa
+Product1	1200	Visa	asuman	Chula Vista	CA	United States
+Product1	1200	Mastercard	Lena	Kuopio	Ita-Suomen Laani	Finland
+Product1	1200	Visa	Lisa	Sugar Land	TX	United States
+Product1	1200	Diners	Bryan Kerrene	New York	NY	United States
+Product1	1200	Visa	chris	London	England	United Kingdom
+Product1	1200	Visa	Maxine	Morton	IL	United States
+Product1	1200	Visa	Family	Los Gatos	CA	United States
+Product1	1200	Mastercard	Katherine	New York	NY	United States
+Product1	1200	Mastercard	Linda	Miami	FL	United States
+Product1	1200	Mastercard	SYLVIA	Vesenaz	Geneve	Switzerland
+Product1	1200	Diners	Sheila	Brooklyn	NY	United States
+Product1	1200	Mastercard	Stephanie	Badhoevedorp	Noord-Holland	Netherlands
+Product1	1200	Amex	Kelly	Reston	VA	United States
+Product2	3600	Visa	James	Burpengary	Queensland	Australia
+Product1	1200	Visa	jennifer	Phoenix	AZ	United States
+Product1	1200	Mastercard	Anneli	Houston	TX	United States
+Product2	3600	Amex	Ritz	Pittsfield	VT	United States
+Product2	3600	Amex	Sylvia	Pittsfield	VT	United States
+Product1	1200	Mastercard	Marie	Ball Ground	GA	United States
+Product1	1200	Visa	Mehmet Fatih	Helsingor	Frederiksborg	Denmark
+Product2	3600	Visa	Anabela	Flossmoor	IL	United States
+Product1	1200	Amex	Nicole	Houston	TX	United States
+Product2	3600	Visa	Christiane	Delray Beach	FL	United States
+Product1	1200	Mastercard	Sari	Newbury	England	United Kingdom
+Product1	1200	Mastercard	simone	Kobenhavn	Kobenhavn	Denmark
+Product1	1200	Amex	Vanessa	Sandy Springs	GA	United States
+Product1	1200	Diners	Anupam	Kinsaley	Dublin	Ireland
+Product1	1200	Visa	Karina	Fort Lauderdale	FL	United States
+Product1	1200	Mastercard	Frank	Melbourne	Victoria	Australia
+Product1	1200	Visa	Angela	Ankeny	IA	United States
+Product1	1200	Visa	Darren	Pittsboro	NC	United States
+Product1	1200	Mastercard	Nikki	New Rochelle	NY	United States
+Product1	1200	Visa	chris	Gold Coast	Queensland	Australia
+Product1	1200	Visa	Stephanie	Brussels	Brussels (Bruxelles)	Belgium
+Product1	1200	Visa	Anushka	Maple Ridge District Municipality	British Columbia	Canada
+Product1	1200	Mastercard	June	Beachwood	OH	United States
+Product2	3600	Diners	Baybars	Prince Albert	Saskatchewan	Canada
+Product1	1200	Mastercard	Bonnie	Saltsjobaden	Stockholm	Sweden
+Product1	1200	Visa	Cindy	Kemble	England	United Kingdom
+Product1	1200	Mastercard	chrissy	W Lebanon	NH	United States
+Product1	1200	Mastercard	Tamar	Headley	England	United Kingdom
+Product2	3600	Mastercard	Deirdre	Lausanne	Vaud	Switzerland
+Product1	1200	Mastercard	Bernadett	Southampton	England	United Kingdom
+Product1	1200	Visa	Dottie	Woodsboro	MD	United States
+Product1	1200	Visa	Stefan	Stavanger	Rogaland	Norway
+Product1	1200	Visa	Gina	Red Deer	Alberta	Canada
+Product1	1200	Diners	Lynne	Memphis	TN	United States
+Product1	1200	Mastercard	Tammy	Morges	Vaud	Switzerland
+Product1	1200	Visa	Kim	Calgary	Alberta	Canada
+Product1	1200	Visa	Bruce	Belleville	Ontario	Canada
+Product1	1200	Visa	Rosa Maria	Cincinnati	OH	United States
+Product1	1200	Visa	Lydia	Comox	British Columbia	Canada
+Product1	1200	Visa	Eric	Gasperich	Luxembourg	Luxembourg
+Product1	1200	Mastercard	AnaPaula	Helens Bay	Northern Ireland	United Kingdom
+Product1	1200	Visa	Robin	Milan	Lombardy	Italy
+Product1	1200	Visa	Gitte	Staten Island	NY	United States
+Product1	1200	Visa	Dr. Claudia	Oslo	Oslo	Norway
+Product1	1200	Visa	Crystal	Farmington	Michigan	United States
+Product1	1200	Diners	Delphine	Santa Monica	CA	United States
+Product1	1200	Visa	nathalie	Calgary	Alberta	Canada
+Product1	1200	Mastercard	Lindi	Vancouver	British Columbia	Canada
+Product2	3600	Mastercard	Valda	Irvine	CA	United States
+Product2	3600	Mastercard	Marcia	Telgte	Nordrhein-Westfalen	Germany
+Product1	1200	Mastercard	Kevin	Cheltenham	England	United Kingdom
+Product1	1200	Visa	Clare	Keller	VA	United States
+Product1	1200	Visa	Alice	Nakskov	Storstrom	Denmark
+Product1	1200	Mastercard	ZENA	Honolulu	HI	United States
+Product1	1200	Visa	Andrea	Bubuieci	Chisinau	Moldova
+Product1	1200	Visa	Rennae	Amelia Island	FL	United States
+Product1	1200	Visa	Gerhard	Alliston	Ontario	Canada
+Product1	1200	Amex	Megan	La Alberca	Murcia	Spain
+Product1	1200	Mastercard	Danielle	Rathgar	Dublin	Ireland
+Product1	1200	Mastercard	Tod	Coral Gables	FL	United States
+Product1	1200	Visa	Janaina	Miami	FL	United States
+Product1	1200	Visa	Kofi	Vancouver	British Columbia	Canada
+Product1	1200	Visa	Jennifer	Jumeira	Dubayy	United Arab Emirates
+Product1	1200	Visa	Jolene	Englewood	CO	United States
+Product1	1200	Mastercard	anne	Bournemouth	England	United Kingdom
+Product1	1200	Mastercard	Alexis	Genoa	IL	United States
+Product1	1200	Visa	Dez	Al 'Adliyah	Al Manamah	Bahrain
+Product1	1200	Visa	Stephanie	Rouen	Upper Normandy	France
+Product1	1200	Visa	Melissa	Parkland	FL	United States
+Product1	1200	Amex	CLARE	San Francisco	CA	United States
+Product1	1200	Mastercard	catherine	Keller	VA	United States
+Product1	1200	Visa	Veronique	Tsawwassen	British Columbia	Canada
+Product1	1200	Mastercard	Bruce and Camille	Clinton	NJ	United States
+Product1	1200	Mastercard	Ellen	Owensboro	KY	United States
+Product1	1200	Visa	Amy	Lakewood Village	TX	United States
+Product1	1200	Visa	Anna	Okotoks	Alberta	Canada
+Product1	1200	Mastercard	Regina	Glimmen	Groningen	Netherlands
+Product1	1200	Visa	Heidi	Calgary	Alberta	Canada
+Product1	1200	Visa	Jessica	Kanata	Ontario	Canada
+Product1	1200	Diners	Petra	Bergen	Nordrhein-Westfalen	Germany
+Product1	1200	Visa	Brian	College Park	MD	United States
+Product1	1200	Visa	Kenny	Kailua Kona	HI	United States
+Product1	1200	Amex	ayse	Redondo Beach	CA	United States
+Product1	1200	Amex	Maria and Timothy	Fountain Hls	AZ	United States
+Product1	1200	Visa	IMAN	Brisbane	Queensland	Australia
+Product1	2100	Mastercard	Gerald	Mahopac	NY	United States
+Product1	1200	Mastercard	Annelies	Ile-Perrot	Quebec	Canada
+Product1	1200	Amex	Jocelyn	Bruxelles	Brussels (Bruxelles)	Belgium
+Product1	1200	Visa	Kara	Chicago	IL	United States
+Product1	1200	Visa	Orsi	Rayford	TX	United States
+Product1	1200	Visa	Ben	Escondido	CA	United States
+Product1	1200	Visa	Sam	Tesvikiye	Istanbul	Turkey
+Product1	1200	Visa	Filip and Teresa	Centurion	Gauteng	South Africa
+Product1	1200	Visa	Grace	York	England	United Kingdom
+Product1	1200	Visa	Chelsey	Ashburn	VA	United States
+Product1	1200	Amex	Charis	Los Angeles	CA	United States
+Product1	1200	Visa	Marlene	Edgewood	WA	United States
+Product1	1200	Visa	Fie	New York	NY	United States
+Product1	1200	Diners	Nicole	Basingstoke	England	United Kingdom
+Product1	1200	Diners	Linda	Den Haag	Zuid-Holland	Netherlands
+Product1	1200	Visa	Janet	Marietta	GA	United States
+Product1	1200	Mastercard	Jamie	Houston	TX	United States
+Product1	1200	Visa	Chad	West Orange	NJ	United States
+Product1	1200	Mastercard	sunny	Amsterdam	Noord-Holland	Netherlands
+Product1	1200	Visa	Anna	Downey	CA	United States
+Product1	1200	Diners	Roger	Urlingford	Kilkenny	Ireland
+Product1	1200	Mastercard	Si	Holte	Kobenhavn	Denmark
+Product1	1200	Visa	Sherri	Freienbach	Schwyz	Switzerland
+Product1	1200	Mastercard	Katherine	Hofheim am Taunus	Hessen	Germany
+Product1	1200	Mastercard	Clare	Lafayette	CA	United States
+Product1	1200	Amex	Campbell	Mushrif		Kuwait
+Product1	1200	Visa	Ruth	Nashville	AR	United States
+Product2	3600	Visa	Cheryl	New Malden	England	United Kingdom
+Product1	1200	Visa	Doug	Bishop Auckland	England	United Kingdom
+Product3	7500	Mastercard	Julianne	Navan	Meath	Ireland
+Product1	1200	Visa	Shailesh	Joppa	MD	United States
+Product1	1200	Visa	Conrad	Joppa	MD	United States
+Product1	1200	Diners	Alison	Hampton	NJ	United States
+Product1	1200	Mastercard	Tracy	Louisville	KY	United States
+Product1	1200	Visa	Kate	Broadlands	VA	United States
+Product1	1200	Diners	Sarka	Yellowknife	Northwest Territories	Canada
+Product2	3600	Visa	Therese	Los Angeles	CA	United States
+Product2	3600	Visa	Abdul-L	New York	NY	United States
+Product2	3600	Visa	heidi	Saint Paul	MN	United States
+Product2	3600	Visa	jiyoung	New York	NY	United States
+Product1	1200	Visa	Klara	Spring Lake Park	MN	United States
+Product1	1200	Mastercard	Andrew	Winnipeg	Manitoba	Canada
+Product1	1200	Visa	Vicki and Bill	Seattle	WA	United States
+Product1	1200	Mastercard	David	Deptford	NJ	United States
+Product1	1200	Mastercard	Antonella	Amsterdam	Noord-Holland	Netherlands
+Product1	1200	Visa	David	Alpharetta	GA	United States
+Product1	1200	Visa	Greg	Washington	DC	United States
+Product1	1200	Visa	Jannik	Holmenkollen	Oslo	Norway
+Product1	1200	Visa	Sylvia	Zekeriyakoy	Istanbul	Turkey
+Product1	1200	Amex	Bernadette	Washington	DC	United States
+Product1	1200	Diners	Denise	Montreal	Quebec	Canada
+Product2	3600	Visa	Caren	Braunschweig	Lower Saxony	Germany
+Product1	1200	Visa	luciana	Athens	GA	United States
+Product1	1200	Diners	Maja	Hoschton	GA	United States
+Product2	3600	Visa	Kristen	Binningen	Basel-Country	Switzerland
+Product1	1200	Visa	Kirstie	Royal Oak	MI	United States
+Product1	1200	Visa	Scott	Royal Oak	MI	United States
+Product1	1200	Mastercard	Jammie	Belmont	MA	United States
+Product1	1200	Mastercard	Frank	Old Greenwich	CT	United States
+Product1	1200	Mastercard	scott	Coconut Grove	FL	United States
+Product1	1200	Visa	Jiri	Vienna	VA	United States
+Product2	3600	Visa	Bev	San Ramon	CA	United States
+Product1	1200	Visa	Dave and Amy	Norfolk	VA	United States
+Product1	1200	Mastercard	Rebecca	Norfolk	VA	United States
+Product1	1200	Visa	Melissa	Aberdeen	Scotland	United Kingdom
+Product1	1200	Amex	jeremy	Charlestown	New South Wales	Australia
+Product1	1200	Visa	Randy	Wigan	England	United Kingdom
+Product1	1200	Visa	Djeiny	Rockville	MD	United States
+Product3	7500	Mastercard	Amanda	Shreveport	LA	United States
+Product1	1200	Mastercard	Andrea	Shreveport	LA	United States
+Product1	1200	Amex	Joanna	Little Silver	NJ	United States
+Product1	1200	Visa	Jessica	Abbey Town	England	United Kingdom
+Product1	1200	Amex	alison	Mid City West	PA	United States
+Product1	1200	Visa	malin	Atlanta	Georgia	United States
+Product2	3600	Visa	Tiffany	Paris	Ile-de-France	France
+Product1	1200	Visa	Genevieve	Milton Keynes	England	United Kingdom
+Product1	1200	Mastercard	Saraya	Dresden	Saxony	Germany
+Product1	1200	Mastercard	Anastasia	NYC	NY	United States
+Product1	1200	Visa	Elizabeth	The Grange	Queensland	Australia
+Product1	1200	Visa	Nicole	Brookline	MA	United States
+Product1	1200	Visa	Jeffrey	Montreal-Nord	Quebec	Canada
+Product1	1200	Mastercard	Blanca Gabriela	Irving	TX	United States
+Product1	1200	Amex	Elisa	Ottawa Hills	OH	United States
+Product2	3600	Mastercard	Patricia	Portola Valley	CA	United States
+Product1	1200	Visa	Bob	Sydney	New South Wales	Australia
+Product3	7500	Visa	Kristyn	Kearns	UT	United States
+Product1	1200	Visa	Elizabeth	Wollongong	New South Wales	Australia
+Product1	1200	Amex	Cathy	Brooklyn	NY	United States
+Product2	3600	Amex	Kaylee	Penngrove	CA	United States
+Product1	1200	Visa	suzanne	Lemont	IL	United States
+Product1	1200	Mastercard	Cassandra	San Carlos	CA	United States
+Product1	1200	Mastercard	Jennifer	Chicago	IL	United States
+Product1	1200	Visa	nicole	Oslo	Oslo	Norway
+Product1	1200	Visa	Sean	Wantagh	NY	United States
+Product1	1200	Mastercard	Morgan	Coomera	Queensland	Australia
+Product1	1200	Diners	Harriet	Fort Oglethorpe	GA	United States
+Product1	1200	Mastercard	Janine	Corbin City	NJ	United States
+Product1	1200	Mastercard	Debora	Lakeside	CA	United States
+Product1	1200	Visa	Vishpala	Margate	FL	United States
+Product1	1200	Amex	Emer	South Palm Beach	FL	United States
+Product1	1200	Diners	john	New York	NY	United States
+Product1	1200	Mastercard	lailani	Anchorage	AK	United States
+Product2	3600	Visa	STEPHANIE	Mona Vale	New South Wales	Australia
+Product1	1200	Visa	Tricia	Castricum	Noord-Holland	Netherlands
+Product1	1200	Visa	Celina	North Brunswick	NJ	United States
+Product2	3600	Visa	Rosemary	Jacksonville	FL	United States
+Product1	1200	Visa	Patrick	Baytown	TX	United States
+Product1	1200	Mastercard	Jacob	Winter Haven	FL	United States
+Product1	1200	Visa	elisabeth	Gonzaga Univ	WA	United States
+Product2	3600	Visa	ayelet	Malmo	Skane	Sweden
+Product2	3600	Visa	seemab	San Pawl tat-Targa		Malta
+Product2	3600	Amex	Lucien	Wiesbaden	Hessen	Germany
+Product1	1200	Visa	Kevin	London	England	United Kingdom
+Product1	1200	Mastercard	Liban	Stavanger	Rogaland	Norway
+Product2	3600	Diners	Lesley	Cork	Cork	Ireland
+Product1	1200	Visa	Marie	Winchester	MA	United States
+Product1	1200	Visa	Charlene	Calgary	Alberta	Canada
+Product1	1200	Visa	Orit	Dallas	TX	United States
+Product1	1200	Visa	Alan	Malahide	Dublin	Ireland
+Product2	3600	Mastercard	Anja Langer	Saint Paul	MN	United States
+Product1	1200	Visa	Lina	Edinburgh	Scotland	United Kingdom
+Product1	1200	Amex	Larry	Naarden	Noord-Holland	Netherlands
+Product1	1200	Visa	Jessica	Oldenburg	Lower Saxony	Germany
+Product3	7500	Visa	Marion	Rennes	Brittany	France
+Product1	1200	Amex	Eric	Ely	NV	United States
+Product1	1200	Amex	Miriane	Norfolk	VA	United States
+Product1	1200	Visa	Jeff	Houston	TX	United States
+Product1	1200	Diners	christina	Chepel	Budapest	Hungary
+Product1	1200	Mastercard	Shannon	Buffalo Grove	IL	United States
+Product1	1200	Mastercard	Angela	Newburgh	Scotland	United Kingdom
+Product1	1200	Visa	Angela	Vienna	Vienna	Austria
+Product1	1200	Mastercard	Elaine	Vicenza	Veneto	Italy
+Product1	1200	Visa	Helen	Mechanics Grove	PA	United States
+Product2	3600	Amex	Fatisha	Miami	FL	United States
+Product1	1200	Visa	Nina	Silver Spring	MD	United States
+Product2	3600	Visa	Barbara	Kirriemuir	Scotland	United Kingdom
+Product1	1200	Diners	Karen	Roquefort	Provence-Alpes-Cote d'Azur	France
+Product1	1200	Visa	Georgina	Portland	OR	United States
+Product1	1200	Diners	Kellie	Staten Island	NY	United States
+Product1	1200	Mastercard	Terry	San Antonio	TX	United States
+Product2	3600	Visa	LAURIE	Guildford	England	United Kingdom
+Product1	1200	Visa	frauke	Horten	Vestfold	Norway
+Product2	3600	Mastercard	Cindy	Englewood	CO	United States
+Product1	1200	Visa	Simone	San Antonio	TX	United States
+Product1	1200	Visa	Hilde	Princeville	HI	United States
+Product1	1200	Visa	Leah	Castleknock	Dublin	Ireland
+Product1	1200	Visa	Laine	Castleknock	Dublin	Ireland
+Product1	1200	Visa	kirsten	Bishops Stortford	England	United Kingdom
+Product2	3600	Mastercard	Elizabeth	Den Haag	Zuid-Holland	Netherlands
+Product1	1200	Mastercard	Anna	Lafayette	CA	United States
+Product1	1200	Diners	Babs	Blackpool	England	United Kingdom
+Product1	1200	Mastercard	Gerlinde	Hellerup	Kobenhavn	Denmark
+Product1	1200	Mastercard	Hollyn	London	England	United Kingdom
+Product1	1200	Visa	leiser	N Java	NY	United States
+Product2	3600	Mastercard	Irene	Munich	Bayern	Germany
+Product1	1200	Amex	Lisa	Brulon	Pays de la Loire	France
+Product1	1200	Visa	Ann	Austin	TX	United States
+Product1	1200	Mastercard	Nichol Jane	Midland Park	NJ	United States
+Product1	1200	Amex	Beatriz	Centerport	NY	United States
+Product1	1200	Mastercard	corina	Neustift am Walde	Vienna	Austria
+Product1	1200	Mastercard	manon	Neustift am Walde	Vienna	Austria
+Product1	1200	Diners	Isabelle	Shorewood	MN	United States
+Product1	1200	Visa	Lynne	Southlake	TX	United States
+Product1	1200	Mastercard	Doug	Huntington	NY	United States
+Product1	1200	Mastercard	AMY	The Woodlands	TX	United States
+Product1	1200	Visa	Kim	Kelowna	British Columbia	Canada
+Product1	1200	Mastercard	HELIDA	White House	TN	United States
+Product1	1200	Visa	Cameron	Rungsted	Frederiksborg	Denmark
+Product1	1200	Mastercard	Wendy	Lake Mahopac	NY	United States
+Product2	3600	Mastercard	Jane	Biot	Provence-Alpes-Cote d'Azur	France
+Product2	3600	Visa	shelby	Plantation	FL	United States
+Product1	1200	Mastercard	Tara	Killiney	Dublin	Ireland
+Product1	1200	Amex	James	Guer	Brittany	France
+Product1	800	Amex	Heloise	Arlington	VA	United States
+Product1	1200	Mastercard	Gabriel	Three Hills	Alberta	Canada
+Product1	1200	Visa	Jodie	Great Falls	Virginia	United States
+Product1	1200	Amex	Jeremy	London	England	United Kingdom
+Product1	1200	Visa	Helga	Clontarf	Dublin	Ireland
+Product1	1200	Visa	Eleanor	Vancouver	British Columbia	Canada
+Product1	1200	Diners	Miss	London	England	United Kingdom
+Product1	1200	Visa	Marie	Dickerson	MD	United States
+Product1	1200	Mastercard	Lisa	Princeton	NJ	United States
+Product1	1200	Mastercard	Priska	Calgary	Alberta	Canada
+Product1	1200	Visa	Katrine	North Tustin	CA	United States
+Product1	1200	Amex	Lisa	Gurgaon	Haryana	India
+Product1	1200	Visa	Sabrina	Rambouillet	Ile-de-France	France
+Product1	1200	Visa	prof	Gladwyne	PA	United States
+Product1	1200	Mastercard	KeithMichelle	Houston	TX	United States
+Product1	1200	Mastercard	Kim	London	England	United Kingdom
+Product1	1200	Visa	anissa	Slough	England	United Kingdom
+Product1	1200	Mastercard	john	Glan-Munchweiler	Rhineland-Palatinate	Germany
+Product2	3600	Visa	Miye	Downingtown	PA	United States
+Product1	1200	Diners	Heidi	MT Pleasant	TX	United States
+Product1	1200	Mastercard	T	Veigy-Foncenex	Rhone-Alpes	France
+Product2	3600	Visa	Daniele	Katy	TX	United States
+Product1	1200	Diners	luisa	Gorey		Jersey
+Product1	1200	Visa	Nadine	Belgrade	MT	United States
+Product1	1200	Mastercard	Tina	Calgary	Alberta	Canada
+Product1	1200	Diners	Damali	Toronto	Ontario	Canada
+Product1	1200	Visa	Katherine	Corrales	NM	United States
+Product1	1200	Visa	Kathryn	Cork	Cork	Ireland
+Product1	1200	Diners	Veronique	Tenafly	NJ	United States
+Product1	1200	Visa	Erica	Leesburg	VA	United States
+Product1	1200	Visa	L	Alcona	Ontario	Canada
+Product1	1200	Mastercard	Diana	Kuala Lumpur	Kuala Lumpur	Malaysia
+Product1	1200	Mastercard	Emma	Sydney	New South Wales	Australia
+Product1	1200	Visa	Marina	Nerang	Queensland	Australia
+Product1	1200	Mastercard	Natalie	Bryceville	FL	United States
+Product1	1200	Diners	Brenda	Saffron Walden	England	United Kingdom
+Product1	1200	Diners	Nita	Sutton	Dublin	Ireland
+Product1	1200	Mastercard	Marian	Durban	KwaZulu-Natal	South Africa
+Product1	1200	Visa	Kevin	Berkeswell	England	United Kingdom
+Product1	1200	Visa	cari	Dryden	VA	United States
+Product1	1200	Visa	Cassandra	Santry	Dublin	Ireland
+Product1	1200	Amex	Christof and Heidi	Barcelona	Catalonia	Spain
+Product1	1200	Visa	Ina	Fayetteville	NC	United States
+Product1	1200	Visa	Lisa	Anse Comeau	Quebec	Canada
+Product1	1200	Visa	Camille and Carmen	Thorlakshofn		Iceland
+Product2	3600	Visa	Trina	Overland	KS	United States
+Product1	1200	Visa	Ginger	King City	Ontario	Canada
+Product1	1200	Visa	breon	Leighton Buzzard	England	United Kingdom
+Product1	1200	Visa	Marion	Umea	Vasterbotten	Sweden
+Product1	1200	Mastercard	Pia	Sola	Rogaland	Norway
+Product1	1200	Visa	Dr. Donald	Stockton-on-Tees	England	United Kingdom
+Product2	3600	Visa	Jenna and Paul	Senatobia	MS	United States
+Product1	1200	Mastercard	Rebecca	Berlin	Berlin	Germany
+Product1	1200	Mastercard	Monique	Waldorf	MD	United States
+Product1	1200	Diners	lilia	Brooklyn	NY	United States
+Product1	1200	Mastercard	Lainey	Lakeville	MN	United States
+Product2	3600	Mastercard	Jag	Saint-Cergues	Rhone-Alpes	France
+Product1	1200	Mastercard	Charlene	Vancouver	British Columbia	Canada
+Product1	1200	Amex	Fiona	Stamford	CT	United States
+Product1	1200	Mastercard	burt	Rathfarnham	Dublin	Ireland
+Product2	3600	Visa	Maggie	Paris	Ile-de-France	France
+Product1	1200	Mastercard	Stanford	Howell	MI	United States
+Product1	1200	Amex	ruth	Encinitas	CA	United States
+Product1	1200	Visa	Courtney	Atchison	KS	United States
+Product2	3600	Amex	Courtney	Mililani	HI	United States
+Product1	1200	Diners	Anthony	Victor	NY	United States
+Product1	1200	Visa	Eleanor	Fairbanks	AK	United States
+Product1	1200	Visa	GAIA	Soro	Vestsjalland	Denmark
+Product1	1200	Mastercard	Zane	Warlingham	England	United Kingdom
+Product1	1200	Mastercard	Beate	Hamburg	Hamburg	Germany
+Product1	1200	Amex	BALA	Accokeek	MD	United States
+Product1	1200	Visa	Mrs	Sunnyvale	CA	United States
+Product1	1200	Diners	Vanessa	Ithaca	NY	United States
+Product1	1200	Amex	Amanda	Houston	TX	United States
+Product1	1200	Mastercard	alex	Farmingtn Hls	MI	United States
+Product1	1200	Mastercard	T	Brooklyn	NY	United States
+Product1	1200	Mastercard	Alva and Martin	Great Falls	VA	United States
+Product1	1200	Visa	Anett	Gosport	England	United Kingdom
+Product2	3600	Mastercard	Jacqui	Scottsdale	AZ	United States
+Product1	1200	Visa	KERRY	Sunnyvale	CA	United States
+Product1	1200	Visa	DeeDee	Songnae-dong	Soul-t'ukpyolsi	South Korea
+Product2	3600	Mastercard	leanne	Clyde Hill	WA	United States
+Product1	1200	Visa	katie	Ruschlikon	Zurich	Switzerland
+Product1	1200	Visa	Marina	Minneapolis	MN	United States
+Product1	1200	Visa	camilla	Chicago	IL	United States
+Product1	1200	Visa	pirunkit	Petworth	England	United Kingdom
+Product1	1200	Diners	Kathrin	Abu Dhabi	Abu Zaby	United Arab Emirates
+Product1	1200	Mastercard	Kate	Stockholm	Stockholm	Sweden
+Product1	1200	Mastercard	Maie	Queen Creek	AZ	United States
+Product1	1250	Mastercard	verena	Queen Creek	AZ	United States
+Product1	1200	Visa	Marie-Christine	Durham	NC	United States
+Product1	1200	Mastercard	Gabriella	Austin	TX	United States
+Product1	1200	Mastercard	valerie et nicolas	Glenn Dale	MD	United States
+Product1	1200	Visa	Nicole	Aardal	Sogn og Fjordane	Norway
+Product1	1200	Visa	Renee	Edinburg	TX	United States
+Product1	1200	Mastercard	Nicole	South Melbourne	Victoria	Australia
+Product1	1200	Mastercard	Joachim	Fortaleza	Ceara	Brazil
+Product1	1200	Visa	Monica	Weston	CT	United States
+Product1	1200	Visa	Nanci	Reading	England	United Kingdom
+Product1	1200	Mastercard	Laura	Coconut Grove	FL	United States
+Product1	1200	Visa	ciara and mike	London	England	United Kingdom
+Product1	1200	Visa	Sarah	San Francisco	CA	United States
+Product2	3600	Mastercard	Anne-line	Zug	Zug	Switzerland
+Product2	3600	Mastercard	Ulrika	Scottsdale	AZ	United States
+Product1	1200	Amex	leigh	Potomac Falls	VA	United States
+Product1	1200	Mastercard	Nuria	Superior	CO	United States
+Product1	1200	Mastercard	Tejal	London	England	United Kingdom
+Product1	1200	Mastercard	Ignacio	Engleside	VA	United States
+Product1	1200	Visa	ZOE	New Plymouth City	Taranaki	New Zealand
+Product1	1200	Mastercard	nihan	Roanoke	VA	United States
+Product1	1200	Visa	alan	Norcross	GA	United States
+Product1	1200	Amex	lydia	Sandy Plains	GA	United States
+Product1	1200	Visa	Tracey	Saint Catharines	Ontario	Canada
+Product1	1200	Visa	Anja	Gainesville	VA	United States
+Product1	1200	Diners	Jennifer	Nordstrand	Oslo	Norway
+Product1	1200	Visa	Holly	Arlington	MA	United States
+Product1	1200	Diners	megan	West Hills	CA	United States
+Product1	1200	Mastercard	Tarah	San Jose	CA	United States
+Product1	1200	Visa	Gerardo	London	England	United Kingdom
+Product1	1200	Visa	Joanne	Oak Park	MI	United States
+Product1	1200	Visa	Margaret	Terrell Hills	TX	United States
+Product1	1200	Visa	Laura	Jumeira	Dubayy	United Arab Emirates
+Product1	1200	Visa	Whitney	Falmouth	VA	United States
+Product1	1200	Visa	Ravinder	Lurgan	Northern Ireland	United Kingdom
+Product1	1200	Visa	Pam	Richmond	TX	United States
+Product1	1200	Mastercard	Celina	Den Haag	Zuid-Holland	Netherlands
+Product1	1200	Diners	Heather	Ooltewah	TN	United States
+Product1	1200	Mastercard	Kathryn	Pacific Beach	CA	United States
+Product1	1200	Visa	Michele	Austin	TX	United States
+Product1	1200	Visa	Craig	Seattle	WA	United States
+Product1	1200	Visa	Kim	Seattle	WA	United States
+Product1	1200	Amex	maria	Ottawa	Ontario	Canada
+Product1	1200	Visa	Elaine	Vienna	VA	United States
+Product1	1200	Visa	Madison	Torbay	Auckland	New Zealand
+Product1	1200	Visa	Amanda	Shenfield	England	United Kingdom
+Product1	1200	Visa	Krista	Bergen	Hordaland	Norway
+Product1	1200	Visa	Sarah	Bolton	England	United Kingdom
+Product1	1200	Mastercard	Sarah	Sandymount	Dublin	Ireland
+Product2	3600	Amex	Pamela	Bellinzona	Ticino	Switzerland
+Product1	1200	Visa	Christine	Antwerpen	Antwerpen	Belgium
+Product3	7500	Mastercard	Diana	Campinas	Sao Paulo	Brazil
+Product1	1200	Amex	mary	Nacka	Stockholm	Sweden
+Product1	1200	Visa	Helena	Fremont	CA	United States
+Product1	1200	Visa	nina	Warwick	Queensland	Australia
+Product1	1200	Amex	Mark	Holmdel	NJ	United States
+Product1	1200	Visa	alice and rudolf	Baltimore	MD	United States
+Product1	1200	Visa	Costanza	Saggart	Dublin	Ireland
+Product1	1200	Mastercard	Yoko	Andover	MA	United States
+Product1	1200	Mastercard	Barbara	La Crescenta	CA	United States
+Product1	1200	Mastercard	Kit	Suwanee	GA	United States
+Product2	3600	Visa	cristina	Seattle	WA	United States
+Product1	1200	Amex	linda	Arlington	VA	United States
+Product1	1200	Mastercard	Christyna	Calgary	Alberta	Canada
+Product1	1200	Visa	Alicja	Kenmore	WA	United States
+Product1	1200	Visa	Rachel	Fresno	CA	United States
+Product1	1200	Amex	Rachel	Atascadero	CA	United States
+Product1	1200	Visa	Jan	Barcelona	Catalonia	Spain
+Product1	1200	Diners	Karin	High Wycombe	England	United Kingdom
+Product2	3600	Amex	ron	Tsaritsyno	Moscow City	Russia
+Product1	1200	Mastercard	Sharon	Ajax	Ontario	Canada
+Product1	1200	Mastercard	Anna	New York	NY	United States
+Product1	1200	Mastercard	Laura	Fairfield	IA	United States
+Product1	1200	Visa	Yana	North Bay	Ontario	Canada
+Product1	1200	Visa	Katherine	Marietta	GA	United States
+Product1	1200	Diners	Therese	Clontarf	Dublin	Ireland
+Product1	1200	Amex	Francoise	Danville	PA	United States
+Product2	3600	Amex	Elizabeth	Okotoks	Alberta	Canada
+Product1	1200	Amex	Corinne	Anthem	AZ	United States
+Product1	1200	Visa	Ec	Clonmel	Tipperary	Ireland
+Product1	1200	Visa	Carmen	Arlington	VA	United States
+Product2	3600	Amex	Brittany	Orlando	FL	United States
+Product1	1200	Mastercard	Sandrine	Walnut Creek	CA	United States
+Product1	1200	Mastercard	asuncion	Centennial	CO	United States
+Product1	1200	Visa	Sophie	Newtown	CT	United States
+Product1	1200	Amex	Henrietta	Vancouver	British Columbia	Canada
+Product1	1200	Visa	DD	York	England	United Kingdom
+Product1	1200	Visa	Jennifer	Drogheda	Louth	Ireland
+Product1	1200	Visa	samuel	Saddle Brook	NJ	United States
+Product1	1200	Amex	Angelina  Patrick	San Diego	CA	United States
+Product1	1200	Visa	Sven	Issaquah	WA	United States
+Product1	1200	Visa	Toni	Bolton	England	United Kingdom
+Product1	1200	Visa	Patrick	Lexington	MA	United States
+Product1	1200	Visa	jason	Altadena	CA	United States
+Product1	250	Visa	Tabatha	Altadena	CA	United States
+Product2	3600	Visa	Aline	Davis	CA	United States
+Product2	3600	Visa	Debra	Toronto	Ontario	Canada
+Product1	1200	Mastercard	Natasha	Pasadena	CA	United States
+Product1	1200	Mastercard	Melinda	Buffalo Grove	IL	United States
+Product1	1200	Visa	Luc1nda	London	England	United Kingdom
+Product1	1200	Visa	Kim	Newcastle	Wicklow	Ireland
+Product1	1200	Amex	Britlyn	Norwalk	CT	United States
+Product1	1200	Diners	Adam	Besancon	Franche-Comte	France
+Product1	1200	Visa	Mimi	Monte-Carlo		Monaco
+Product1	1200	Visa	Liann	Monaco		Monaco
+Product1	1200	Mastercard	Sarah	Floyds Knobs	IN	United States
+Product1	1200	Diners	Naseer	London	England	United Kingdom
+Product1	1200	Amex	Caroline	Marietta	GA	United States
+Product1	1800	Amex	Karena	Marietta	GA	United States
+Product1	1200	Amex	janet	Hon	HI	United States
+Product3	7500	Visa	Hans	Knoxville	TN	United States
+Product1	1200	Visa	Sandra  Thierry  Zoe	Knoxville	TN	United States
+Product1	1200	Mastercard	Eleanor	Edinburgh	Scotland	United Kingdom
+Product1	1200	Visa	Anna	Paris	Ile-de-France	France
+Product1	1200	Visa	Cara	Humble	TX	United States
+Product1	1200	Visa	carolien	Mashpee	MA	United States
+Product1	1200	Mastercard	Ana	Hong Kong		Hong Kong
+Product1	1200	Visa	Patrick	Birmingham	MI	United States
+Product1	1200	Visa	Heidi	St Augustine	FL	United States
+Product1	1200	Visa	Tom	Salt Lake City	UT	United States
+Product1	1200	Amex	Justine	Seattle	WA	United States
+Product1	1200	Visa	isabel	Ruti	Zurich	Switzerland
+Product3	7500	Visa	scott	Rogers	AR	United States
+Product1	1200	Visa	Fatima	Rogers	AR	United States
+Product1	1200	Visa	Judy	Dun Laoghaire	Dublin	Ireland
+Product1	1200	Visa	Glenn	Perth	Scotland	United Kingdom
+Product1	1200	Amex	Family in	London	England	United Kingdom
+Product1	1200	Visa	Lauren	Gries	Rhineland-Palatinate	Germany
+Product3	7500	Visa	Michael	Pietermaritzburg	KwaZulu-Natal	South Africa
+Product1	1200	Visa	Jodi	Sutton Valence	England	United Kingdom
+Product1	1200	Mastercard	simone	Lyngby	Kobenhavn	Denmark
+Product1	1200	Diners	Sonja	Alpine	NJ	United States
+Product1	1200	Mastercard	Shane	Zurich	Zurich	Switzerland
+Product2	3600	Amex	Ruth	Saskatoon	Saskatchewan	Canada
+Product1	1200	Mastercard	Cleo	Pacific Palisades	CA	United States
+Product1	1200	Diners	Benoit	Fort Saint James	British Columbia	Canada
+Product1	1200	Amex	Claire	Versoix	Geneve	Switzerland
+Product1	1200	Visa	Claire	Trumansburg	NY	United States
+Product1	1200	Visa	Lindsey	Kennett Square	PA	United States
+Product2	3600	Visa	Nicola	San Jose	CA	United States
+Product2	3600	Mastercard	PATRICK	Ban Khlong Sip	Krung Thep	Thailand
+Product1	1200	Visa	jennifer	Morro Bay	CA	United States
+Product1	1200	Visa	Amy	Parramatta	New South Wales	Australia
+Product1	1200	Mastercard	Whitney	Dumbleton	England	United Kingdom
+Product1	1200	Visa	Astrid	Altlengbach	Lower Austria	Austria
+Product1	1200	Visa	jo	Ballincollig	Cork	Ireland
+Product1	1200	Visa	Michelle	Ballincollig	Cork	Ireland
+Product1	1200	Mastercard	TG	Zagore	Stara Zagora	Bulgaria
+Product1	1200	Mastercard	Emily	Vecmilgravis	Riga	Latvia
+Product2	3600	Visa	Niki	Trelex	Vaud	Switzerland
+Product1	1200	Visa	Sarah	Ornex	Rhone-Alpes	France
+Product1	1200	Visa	sherry	Las Vegas	NV	United States
+Product2	3600	Amex	Laura	San Anselmo	CA	United States
+Product1	1200	Mastercard	Carmela	Hannover	Lower Saxony	Germany
+Product1	1200	Diners	Matt	N Woodmere	NY	United States
+Product1	1200	Visa	Karen	Madrid	Madrid	Spain
+Product1	1200	Visa	Joanne	Castlebar	Mayo	Ireland
+Product1	1200	Visa	Stephanie	Fairfax	CA	United States
+Product1	1200	Visa	Hurst	Chandler	AZ	United States
+Product1	1200	Visa	Liza	Dammeron Valley	UT	United States
+Product1	1200	Mastercard	Michele	Buffalo	NY	United States
+Product3	7500	Visa	Karin	Olive Branch	MS	United States
+Product1	1200	Amex	cath	Warwick	NY	United States
+Product2	3600	Visa	eva	Gisborne	Victoria	Australia
+Product1	1200	Amex	Andrea	San Mateo	CA	United States
+Product1	1200	Mastercard	Sabine	Milton Keynes	England	United Kingdom
+Product1	1200	Mastercard	Aideen and Jonathan	Kecskemet	Bacs-Kiskun	Hungary
+Product1	1200	Visa	George	Nakskov	Storstrom	Denmark
+Product1	1200	Visa	Helen	Aloma	FL	United States
+Product1	1200	Diners	C	Chandler	AZ	United States
+Product1	1200	Visa	chris	Kjobenhavn	Staden Kobenhavn	Denmark
+Product1	1200	Visa	maggie	Stockton	England	United Kingdom
+Product1	1200	Amex	Mareike	Cumming	GA	United States
+Product1	1200	Visa	lamia	Little Compton	RI	United States
+Product1	1200	Visa	Madhu	Centennial	CO	United States
+Product1	NULL	000"	Visa	sandhya	Centennial	CO
+Product1	1200	Amex	Kimberly	Herndon	VA	United States
+Product1	1200	Visa	Tania	Vista	CA	United States
+Product1	1200	Visa	andrea	Oostburg	WI	United States
+Product1	1200	Mastercard	John	Griffith	New South Wales	Australia
+Product2	3600	Visa	carol	Ann Arbor	MI	United States
+Product1	1200	Visa	Nona	South Jordan	UT	United States
+Product2	3600	Visa	Family	Dubai	Dubayy	United Arab Emirates
+Product2	3600	Visa	Michelle	Dubai	Dubayy	United Arab Emirates
+Product2	3600	Visa	Kathryn	Kirriemuir	Scotland	United Kingdom
+Product1	1200	Visa	Oswald	Tramore	Waterford	Ireland
+Product1	1200	Visa	Elyssa	Gdansk	Pomorskie	Poland
+Product1	1200	Visa	michelle	Arklow	Wicklow	Ireland
+Product1	1200	Mastercard	Alicia	Lincoln	NE	United States
+Product1	1200	Mastercard	JP	Tierp	Uppsala	Sweden
+Product2	3600	Visa	Geraldine	Brussels	Brussels (Bruxelles)	Belgium
+Product1	1200	Mastercard	sandra	Burr Oak	IA	United States
+Product1	1200	Visa	Olivia	Wheaton	IL	United States
+Product2	3600	Mastercard	Tom	Killeen	TX	United States
+Product1	1200	Visa	Annette	Manhattan	NY	United States
+Product1	1200	Visa	SUSAN	Oxford	England	United Kingdom
+Product2	3600	Visa	Michael	Paris	Ile-de-France	France
+Product1	1200	Visa	ashton	Exeter	England	United Kingdom
+Product1	1200	Visa	Scott	Rungsted	Frederiksborg	Denmark
+Product2	3600	Visa	Pam	London	England	United Kingdom
+Product1	1200	Visa	Lisa	Borja	Bohol	Philippines
+Product2	3600	Mastercard	Pavel	London	England	United Kingdom
+Product1	1200	Visa	Richard	Jamestown	RI	United States
+Product1	1200	Visa	Jasinta Jeanne	Owings Mills	MD	United States
+Product1	1200	Visa	Rachel	Hamilton	Ontario	Canada
+Product1	1200	Amex	Cherish	Anchorage	AK	United States
+Product1	1200	Visa	Shona	Mornington	Meath	Ireland
+Product1	1200	Mastercard	Abikay	Fullerton	CA	United States
+Product1	1200	Amex	Abikay	Atlanta	GA	United States
+Product2	3600	Visa	Kendra	Toronto	Ontario	Canada
+Product1	1200	Visa	amanda	Liverpool	England	United Kingdom
+Product2	3600	Amex	Leila	Ponte San Nicolo	Veneto	Italy
+Product1	1200	Amex	amanda	Las Vegas	NV	United States
+Product1	1200	Visa	Stacy	Rochester Hills	MI	United States
+Product2	3600	Visa	Derrick	North Bay	Ontario	Canada
+Product1	1200	Visa	Jacob	Lindfield	New South Wales	Australia
+Product1	1200	Mastercard	DOREEN	Madrid	Madrid	Spain
+Product1	1200	Diners	eugenia	Wisconsin Rapids	WI	United States
+Product1	1200	Visa	Karen	Austin	TX	United States
+Product1	1200	Visa	Bea	Chicago	IL	United States
+Product1	1200	Diners	Hilde Karin	Las Vegas	NV	United States
+Product1	1200	Visa	Rima	Mullingar	Westmeath	Ireland
+Product1	1200	Visa	Ruangrote	Melbourne	Victoria	Australia
+Product1	1200	Amex	pamela	Ayacucho	Buenos Aires	Argentina
+Product2	3600	Visa	Emillie	Eagan	MN	United States
+Product1	1200	Visa	sangeeta	Vossevangen	Hordaland	Norway
+Product1	1200	Visa	Anja	Ferney-Voltaire	Rhone-Alpes	France
+Product1	1200	Mastercard	Andrew	Sevilla	Andalucia	Spain
+Product1	1200	Visa	Bato	Munchengosserstadt	Thuringia	Germany
+Product1	1200	Mastercard	Ailsa	Lindenhurst	NY	United States
+Product1	1200	Visa	Sophie	Bloomfield	MI	United States
+Product1	1200	Visa	Katrin	Calgary	Alberta	Canada
+Product2	3600	Mastercard	Kelly	Vancouver	British Columbia	Canada
+Product1	1200	Visa	Tomasz	Klampenborg	Kobenhavn	Denmark
+Product1	1200	Visa	Elizabeth	Calne	England	United Kingdom
+Product2	3600	Amex	Michael	Los Angeles	CA	United States
+Product2	3600	Visa	Natasha	Milano	Lombardy	Italy
+Product2	3600	Mastercard	Meredith	Kloten	Zurich	Switzerland
+Product1	1200	Mastercard	Nicole	Fayetteville	NC	United States
+Product1	1200	Visa	Ryan	Simpsonville	SC	United States
+Product1	1200	Visa	Mary	Auckland	Auckland	New Zealand
+Product1	1200	Diners	Aaron	Reading	England	United Kingdom
+Product1	1200	Visa	Bertrand	North Caldwell	NJ	United States
+Product1	1200	Mastercard	Zoe	Coventry	England	United Kingdom
+Product1	1200	Mastercard	Trine Marie	Orillia	Ontario	Canada
+Product1	1200	Diners	Kim	Paris	Ile-de-France	France
+Product1	1200	Visa	John	San Jose	CA	United States
+Product1	1200	Visa	Rich	Ingelheim-Mitte	Rhineland-Palatinate	Germany
+Product1	1200	Diners	Kayla	Leamington Spa	England	United Kingdom
+Product1	1200	Visa	Richard and Comfort	Regensdorf	Zurich	Switzerland
+Product1	1200	Visa	Eric	Melbourne	Victoria	Australia
+Product1	1200	Mastercard	Melissa	Geneve	Geneve	Switzerland
+Product1	1200	Diners	Dawn	Vaucluse	New South Wales	Australia
+Product1	1200	Mastercard	Tamara	Klosterneuburg	Lower Austria	Austria
+Product1	1200	Visa	Ashley	Rancho Cordova	CA	United States
+Product1	1200	Visa	familly	Creemore	Ontario	Canada
+Product1	1200	Mastercard	Ken	Sidcup	England	United Kingdom
+Product1	1200	Visa	Tori	Minneapolis	MN	United States
+Product2	3600	Mastercard	Hanne	Phoenix	MD	United States
+Product1	1200	Amex	Precious	Edmonton	Alberta	Canada
+Product1	1200	Visa	Michelle	Lyndoch	South Australia	Australia
+Product1	1200	Visa	Paula	Larchmont	NY	United States
+Product1	1200	Visa	Stephanie	Saint Charles	IL	United States
+Product1	1200	Visa	kemp	Brentwood	TN	United States
+Product2	3600	Diners	Therese	Pensacola	FL	United States
+Product1	1200	Diners	Mona	Kelowna	British Columbia	Canada
+Product1	1200	Visa	Caroline	Toronto	Ontario	Canada
+Product1	1200	Mastercard	Andrea	Brondby Strand	Kobenhavn	Denmark
+Product1	1200	Mastercard	Pilar	Florence	Tuscany	Italy
+Product1	1200	Visa	Lisa	Perth	Western Australia	Australia
+Product1	1200	Amex	A	Saint Petersburg	FL	United States
+Product1	1200	Mastercard	Yvette	Aubonne	Vaud	Switzerland
+Product2	3600	Amex	Katie	Gava	Catalonia	Spain
+Product1	1200	Visa	Nicole	Mc Lean	VA	United States
+Product1	1200	Mastercard	Kelly	Hendersonville	TN	United States
+Product2	3600	Visa	george	Zurich	Zurich	Switzerland
+Product1	1200	Mastercard	Samantha	Watford	England	United Kingdom
+Product1	1200	Visa	Caterina	Amsterdam	Noord-Holland	Netherlands
+Product1	1200	Visa	Kate	Rochester Hills	MI	United States
+Product1	1200	Mastercard	Tina	Anglesea	Victoria	Australia
+Product1	1200	Visa	Emily	Killarney	New Providence	The Bahamas
+Product1	1200	Amex	Maricel	Malibu	CA	United States
+Product1	1200	Visa	Patricia	Allen	TX	United States
+Product1	1200	Mastercard	steve	Evires	Rhone-Alpes	France
+Product1	1200	Amex	Darrah	Den Haag	Zuid-Holland	Netherlands
+Product1	1200	Visa	Sara	Perth City	Western Australia	Australia
+Product1	1200	Visa	Erika	Redruth	England	United Kingdom
+Product1	1200	Visa	Audrey	Bruxelles	Brussels (Bruxelles)	Belgium
+Product1	1200	Visa	Louise	London	England	United Kingdom
+Product1	1200	Diners	Karen	Montreal	Quebec	Canada
+Product1	1200	Amex	Maki	Miami Beach	FL	United States
+Product1	1200	Visa	Peter	Shankill	Dublin	Ireland
+Product1	1200	Diners	Ashlee	Oxford	England	United Kingdom
+Product1	1200	Mastercard	Anja	New York	NY	United States
+Product1	1200	Visa	Ellen Walton	Melbourne	Victoria	Australia
+Product1	1200	Mastercard	Jessica	Woodland Hills	CA	United States
+Product1	1200	Visa	Wouter and Andrea	Anchorage	AK	United States
+Product1	1200	Visa	Pam and Rob	Yorba Linda	CA	United States
+Product1	1200	Visa	Elsa	Waiwera	Auckland	New Zealand
+Product1	1200	Amex	kathleen kane	Jamaica Plain	MA	United States
+Product1	1200	Diners	Selene	Oslo	Oslo	Norway
+Product1	1200	Visa	Christy	Setagaya	Tokyo	Japan
+Product2	3600	Visa	Hanna Agla	Donauworth	Bayern	Germany
+Product1	1200	Visa	Elyse	Bandon	Cork	Ireland
+Product1	1200	Mastercard	Alexis	Ehingen an der Donau	Baden-Wurttemberg	Germany
+Product1	1200	Visa	M George	Paris	Ile-de-France	France
+Product1	1200	Visa	John	Banbury	England	United Kingdom
+Product1	1200	Visa	cheryl	Beverly Hills	CA	United States
+Product1	1200	Amex	R	Danderyd	Stockholm	Sweden
+Product2	3600	Visa	Charlene	Sebastopol	CA	United States
+Product1	1200	Visa	Cindy	Glendora	CA	United States
+Product1	1200	Visa	Ed	Nacka	Stockholm	Sweden
+Product1	1200	Mastercard	Astrid	Canterbury	England	United Kingdom
+Product1	1200	Visa	Nicole	Neuchatel	Neuchatel	Switzerland
+Product1	1200	Visa	Maria Macarena	Billings	MT	United States
+Product1	1200	Visa	Maggie	Libertyville	IL	United States
+Product2	3600	Amex	Christophe	Temecula	CA	United States
+Product1	1200	Diners	Manoj	Boise	ID	United States
+Product1	1200	Visa	Brenda	Rock Hill	SC	United States
+Product1	1200	Mastercard	Lizelle	Mililani	HI	United States
+Product2	3600	Visa	Kees en Valesca	Scamander	Tasmania	Australia
+Product1	1200	Visa	Cormac	Freeport City	Freeport	The Bahamas
+Product1	1200	Visa	jacqueline	North Vancouver	British Columbia	Canada
+Product1	1200	Visa	Martin	Ludwigsburg	Baden-Wurttemberg	Germany
+Product1	1200	Mastercard	Dean	Rockingham	Western Australia	Australia
+Product1	1200	Visa	VERBENA	Basel	Basel-Town	Switzerland
+Product1	1200	Mastercard	Angel Marie	Den Haag	Zuid-Holland	Netherlands
+Product1	1200	Visa	olla	Westminster	CO	United States
+Product2	3600	Visa	Eman	Penclawdd	Wales	United Kingdom
+Product2	3600	Visa	Julia	Ede	Gelderland	Netherlands
+Product1	1200	Visa	Sarah	Plan-les-Ouattes	Geneve	Switzerland
+Product1	1200	Visa	Esther	Stocksund	Stockholm	Sweden
+Product1	1200	Diners	amy	Stuttgart	Baden-Wurttemberg	Germany
+Product2	3600	Mastercard	Jyoti	Tunbridge Wells	England	United Kingdom
+Product2	3600	Visa	Keri	Issaquah	WA	United States
+Product1	1200	Diners	Paul	Burnaby	British Columbia	Canada
+Product1	1200	Mastercard	Attie	Cypress	CA	United States
+Product1	1200	Visa	odile	Lititz	PA	United States
+Product1	1200	Visa	gail	London	England	United Kingdom
+Product1	1200	Visa	Niki	Chadds Ford	PA	United States
+Product2	3600	Visa	Danny	St Thomas	VI	United States
+Product1	1200	Mastercard	Sarah	Coppell	TX	United States
+Product1	1200	Visa	Beckie	Ladera Ranch	CA	United States
+Product1	1200	Visa	Maryse	Rathfarnham	Dublin	Ireland
+Product2	3600	Mastercard	don	Cagliari	Sardinia	Italy
+Product1	1200	Visa	Majken	Charlottenlund	Kobenhavn	Denmark
+Product1	1200	Amex	Karen and Andrew	Munchen	Bayern	Germany
+Product1	1200	Visa	Katerina	Firenze	Tuscany	Italy
+Product1	1200	Mastercard	Mary	Baile Atha Bui	Meath	Ireland
+Product1	1200	Visa	Oscar	Chamonix-Mont-Blanc	Rhone-Alpes	France
+Product1	1200	Diners	Suejean	Gingins	Vaud	Switzerland
+Product1	1200	Amex	ann	Boca Raton	FL	United States
+Product1	1200	Visa	Renee	Chaska	MN	United States
+Product1	1200	Visa	Catherine	Hghlnds Ranch	CO	United States
+Product1	1200	Amex	Rhonda	Atlanta	GA	United States
+Product1	1200	Amex	alix	Tenafly	NJ	United States
+Product1	1200	Visa	Mike	Aberdeen	Scotland	United Kingdom
+Product1	1200	Visa	Diane	Djurgarden	Stockholm	Sweden
+Product1	1200	Visa	Sigrun	Nashville	TN	United States
+Product1	1200	Visa	Dania	Munich	Bayern	Germany
+Product2	3600	Mastercard	Kelsi	Utrecht	Utrecht	Netherlands
+Product1	1200	Visa	Maria	Boyceville	WI	United States
+Product1	1200	Visa	Bent Erik	Basauri	Pais Vasco	Spain
+Product1	1200	Amex	Kirsten	Melbourne	Victoria	Australia
+Product1	1200	Visa	Dickson	Kemerburgaz	Istanbul	Turkey
+Product1	1200	Diners	Howard	Worcester	England	United Kingdom
+Product1	1200	Visa	Dana	Thurles	Tipperary	Ireland
+Product1	1200	Mastercard	Nola	Den Haag	Zuid-Holland	Netherlands
+Product1	1200	Visa	Elizabeth	Cos Cob	CT	United States
+Product2	3600	Visa	minjeong	Bern	Bern	Switzerland
+Product1	1200	Visa	Matt	Leicester	England	United Kingdom
+Product1	1200	Visa	Vanessa	Cornwall	Ontario	Canada
+Product2	3600	Visa	Charlotte	Sterling	VA	United States
+Product1	1200	Visa	Rowena	Cork	Cork	Ireland
+Product1	1200	Visa	Catherine	Mount Forest	Ontario	Canada
+Product1	1200	Mastercard	Sarah	Ridgefield	CT	United States
+Product1	1200	Visa	sorcha	Porto Alegre	Rio Grande do Sul	Brazil
+Product1	1200	Visa	sorcha	Cartierville	Quebec	Canada
+Product1	1200	Mastercard	Mary	Stuttgart	Baden-Wurttemberg	Germany
+Product1	1200	Visa	Ronja	Manhattan	NY	United States
+Product1	1200	Visa	Nicola	Sneem	Kerry	Ireland
+Product1	1200	Amex	BURCAK	Alpharetta	GA	United States
+Product1	1200	Visa	isabelle	Sainte-Therese-de-Blainville	Quebec	Canada
+Product1	1200	Mastercard	christy	Germantown	TN	United States
+Product1	1200	Visa	Lilly	Castleknock	Dublin	Ireland
+Product1	1200	Diners	Mandy	Hono	HI	United States
+Product1	1200	Mastercard	Elena	New Rochelle	NY	United States
+Product1	1200	Visa	Lolarae	Calgary	Alberta	Canada
+Product1	1200	Mastercard	Lisa	South Waterford	ME	United States
+Product1	1200	Mastercard	Nita and Trebor	Washington Township	OH	United States
+Product1	1200	Visa	Jenevieve	Guelph	Ontario	Canada
+Product2	3600	Mastercard	Piret	Bunbury	Western Australia	Australia
+Product1	1200	Mastercard	Damian	Mettlach	Saarland	Germany
+Product1	1200	Mastercard	Lusell	Oberwil	Basel-Country	Switzerland
+Product1	1200	Visa	Costanza	Beykoz	Istanbul	Turkey
+Product1	1200	Visa	Vanessa	Arc-et-Senans	Franche-Comte	France
+Product1	1200	Diners	Evelyn	Grossbodungen	Thuringia	Germany
+Product1	1200	Amex	Nicola	Bruxelles	Brussels (Bruxelles)	Belgium
+Product1	1200	Visa	Simone	Kilcornan	Limerick	Ireland
+Product1	1200	Mastercard	Elisabeth	Wilmington	NC	United States
+Product1	1200	Visa	Kasey	Aix-en-Provence	Provence-Alpes-Cote d'Azur	France
+Product2	3600	Amex	Olympe	Lidingo	Stockholm	Sweden
+Product1	1200	Visa	James	Edmonton	Alberta	Canada
+Product1	1200	Visa	Alyssa	Antibes	Provence-Alpes-Cote d'Azur	France
+Product1	1200	Visa	Reto	Seattle	WA	United States
+Product1	1200	Amex	Joelle	Rowayton	CT	United States
+Product1	1200	Mastercard	Nicole	Simcoe	Ontario	Canada
+Product1	1200	Mastercard	Alexandria	Lebanon	PA	United States
+Product1	1200	Mastercard	Elisabeth	Birkdale	Queensland	Australia
+Product1	1200	Visa	Ann	Brisbane	Queensland	Australia
+Product1	1200	Visa	Olga	Strasbourg	Alsace	France
+Product1	1200	Visa	Courtney	Suchdol	Prague	Czech Republic
+Product1	1200	Visa	stacy	Stuttgart	Baden-Wurttemberg	Germany
+Product2	3600	Amex	Monica	Villanova	PA	United States
+Product2	3600	Visa	Michael	Norrkoping	Ostergotland	Sweden
+Product1	1200	Visa	Katrin	Zumikon	Zurich	Switzerland
+Product2	3600	Mastercard	Louise	Balgach	St Gallen	Switzerland
+Product1	1200	Amex	Alfredo A	Las Vegas	NV	United States
+Product2	3600	Visa	Kerry	Prague	Central Bohemia	Czech Republic
+Product1	1200	Visa	Saeko	Warwick	NY	United States
+Product2	3600	Visa	VIOLETA	Silver Spring	MD	United States
+Product1	1200	Visa	Antje	Sacramento	CA	United States
+Product1	1200	Visa	janet	Blarney	Cork	Ireland
+Product1	1200	Visa	claire	Ballyneety	Limerick	Ireland
+Product1	1200	Mastercard	Nathalie	Haymarket	VA	United States
+Product1	1200	Mastercard	Daria	George Town		Cayman Isls
+Product1	1200	Visa	Judith L.	Scottsdale	AZ	United States
+Product1	1200	Visa	Audinet	Cambridge	MA	United States
+Product1	1200	Visa	William	Chalfont Saint Peter	England	United Kingdom
+Product1	1200	Diners	Tatjana and Martin	Birmingham	England	United Kingdom
+Product1	1200	Mastercard	Scott	Den Haag	Zuid-Holland	Netherlands
+Product3	7500	Mastercard	Brona	Den Haag	Zuid-Holland	Netherlands
+Product1	1200	Mastercard	Andree	Newmarket	Cork	Ireland
+Product1	1200	Visa	Aziz	Irpin'	Kiev	Ukraine
+Product1	1200	Visa	Fernando	Grosseto	Tuscany	Italy
+Product1	1200	Visa	Jo	Pembroke Pines	FL	United States
+Product1	1200	Visa	Joern	Waterford	Ontario	Canada
+Product2	3600	Visa	Melissa	Carouge	Geneve	Switzerland
+Product1	1200	Visa	Melissa	Chester	CT	United States
+Product1	1200	Mastercard	isabela	Reston	VA	United States
+Product1	1200	Visa	Nacole	Milan	Lombardy	Italy
+Product1	1200	Diners	Jennifer	Vancouver	British Columbia	Canada
+Product1	1200	Diners	Mary	Alpharetta	GA	United States
+Product1	1200	Visa	Lisa	Ringgold	GA	United States
+Product1	1200	Diners	Debora	Wall	NJ	United States
+Product2	3600	Mastercard	Karoline	Powell River	British Columbia	Canada
+Product2	3600	Mastercard	Jo	Huntington Beach	CA	United States
+Product1	1200	Amex	Kristen	Los Gatos	CA	United States
+Product2	3600	Visa	Astrid	Oslo	Oslo	Norway
+Product1	1200	Mastercard	Malinda	Oxford	England	United Kingdom
+Product1	1200	Amex	Sylvia	Alexandria	VA	United States
+Product1	1200	Visa	Jupiterlina Elika	Rome	Lazio	Italy
+Product1	1200	Visa	Aniko	Random Lake	WI	United States
+Product1	1200	Mastercard	Petra	San Francisco	CA	United States
+Product1	1200	Mastercard	Heather	Baluan	General Santos	Philippines
+Product1	1200	Mastercard	Kim	Brussels	Brussels (Bruxelles)	Belgium
+Product1	1200	Amex	Ruby	Bedford Corners	NY	United States
+Product1	1200	Visa	Novy	Istanbul	Istanbul	Turkey
+Product2	3600	Visa	Stephanie	Hilversum	Noord-Holland	Netherlands
+Product1	1200	Mastercard	Tammy	Milford	ME	United States
+Product1	1200	Visa	Alessandra	Vancouver	British Columbia	Canada
+Product1	1200	Mastercard	Cathy	Kidderminster	England	United Kingdom
+Product2	3600	Visa	Scott	Lausanne	Vaud	Switzerland
+Product1	1200	Amex	dia	Claygate	England	United Kingdom
+Product1	1200	Visa	Lauren	Laasby	Arhus	Denmark
+Product1	1200	Visa	Line	Budaors	Pest	Hungary
+Product1	1200	Amex	Sean	London	England	United Kingdom
+Product1	1200	Diners	Sarah	Santo Domingo City	Distrito Nacional	Dominican Republic
+Product1	1200	Visa	Brian	Croton On Hudson	NY	United States
+Product1	1200	Mastercard	Lesa	Vespasiano	Minas Gerais	Brazil
+Product1	1200	Mastercard	james	Nashville	TN	United States
+Product1	1200	Mastercard	loudon	Ottawa	Ontario	Canada
+Product1	1200	Mastercard	Allison	Naples	FL	United States
+Product1	1200	Mastercard	Surat	Bridgewater	NJ	United States
+Product2	3600	Mastercard	Judy	Washington	DC	United States
+Product1	1200	Diners	brian	Hagen	Lorraine	France
+Product1	1200	Visa	Rachel	Taicheng	Guangdong	China
+Product1	1200	Mastercard	Hilde	Groningen	Groningen	Netherlands
+Product1	1200	Mastercard	Tarja	Villars	Vaud	Switzerland
+Product1	1200	Visa	Megan	Huntersville	NC	United States
+Product2	3600	Visa	Charmain	Cartersburg	IN	United States
+Product1	1200	Visa	Katharina	Flower Mound	TX	United States
+Product1	1200	Visa	Zaneta	Rochester	MI	United States
+Product1	1200	Visa	Jeannette	Dubai	Dubayy	United Arab Emirates
+Product2	3600	Visa	Liz	Langnau	Zurich	Switzerland
+Product2	3600	Mastercard	Christiane	Mission	British Columbia	Canada
+Product1	1200	Visa	Cherie	Columbus	OH	United States
+Product2	3600	Visa	Shiree	Clondalkin	Dublin	Ireland
+Product1	1200	Mastercard	Tracey	Harold's Cross	Dublin	Ireland
+Product1	1200	Diners	Scott	Sag Harbor	NY	United States
+Product1	1200	Visa	Frances	San Diego	CA	United States
+Product1	1200	Mastercard	Beatrice	Wilmington	DE	United States
+Product2	3600	Visa	Jessica	Toronto	Ontario	Canada
+Product1	1200	Amex	Alison	Issaquah	WA	United States
+Product1	1200	Visa	elaine	Phuket	Phuket	Thailand
+Product1	1200	Visa	Chevonne	Athina	Attiki	Greece
+Product1	1200	Visa	danielle	Geneve	Geneve	Switzerland
+Product1	1200	Mastercard	Caroline and Jonathan	Chichester	England	United Kingdom
+Product1	1200	Visa	manuela	Massagno	Ticino	Switzerland
+Product1	1200	Visa	Carole	Cardiff	Wales	United Kingdom
+Product2	3600	Amex	Ghislaine	Ferney-Voltaire	Rhone-Alpes	France
+Product2	3600	Visa	Christian	Mableton	GA	United States
+Product1	1200	Visa	Hollie	San Diego	CA	United States
+Product1	1200	Visa	mike	La Louviere	Hainaut	Belgium
+Product1	1200	Mastercard	Malahat	Minneapolis	MN	United States
+Product1	1200	Amex	Michaela	Mafra	Santa Catarina	Brazil
+Product1	1200	Amex	Amy	Ashford	England	United Kingdom
+Product1	1200	Mastercard	Brandi	Edmonton	Alberta	Canada
+Product1	1200	Visa	erin	London	England	United Kingdom
+Product1	1200	Diners	Tracy	Lucca	Tuscany	Italy
+Product1	1200	Visa	Polyxene	Perth	Western Australia	Australia
+Product2	3600	Mastercard	Jean	Arlington	VA	United States
+Product1	1200	Diners	Andrea	Calgary	Alberta	Canada
+Product1	1200	Mastercard	Jessica	Chiefland	FL	United States
+Product1	1200	Mastercard	David	Stavenger	Rogaland	Norway
+Product2	3600	Mastercard	Caroline	Begnins	Vaud	Switzerland
+Product1	1200	Visa	Riche Lou	Newton	MA	United States
+Product1	1200	Mastercard	Chris	Den Haag	Zuid-Holland	Netherlands
+Product2	3600	Visa	Karen	Berikon	Aargau	Switzerland
+Product1	1200	Diners	melanie	Santa Barbaraa	Heredia	Costa Rica
+Product1	1200	Visa	beatrice	Churra	Murcia	Spain
+Product1	1200	Mastercard	lorna	Castle Rock	CO	United States
+Product1	1200	Amex	Tary	Zug	Zug	Switzerland
+Product1	1200	Visa	Julie	Ashford	England	United Kingdom
+Product1	1200	Amex	Julie	Rockville	MD	United States
+Product1	1200	Mastercard	Jerome	Madrid	Madrid	Spain
+Product1	1200	Visa	Laleh	Aasgaardstrand	Vestfold	Norway
+Product1	1200	Visa	Michael	Milano	Lombardy	Italy
+Product1	1200	Visa	Kerry	Anieres	Geneve	Switzerland
+Product3	7500	Mastercard	Anita	Fresno	TX	United States
+Product1	1200	Mastercard	Veronique	Fresno	TX	United States
+Product1	1200	Visa	Sarah	Warwick	Quebec	Canada
+Product1	1200	Diners	Simone	Watford	England	United Kingdom
+Product1	1200	Visa	Jackie	Waterford	Waterford	Ireland
+Product1	1200	Visa	giovanna	Pruszkow	Mazowieckie	Poland
+Product1	1200	Visa	Elizabeth	Hamilton	Hamilton	Bermuda
+Product2	3600	Visa	Lisa	Ottawa	Ontario	Canada
+Product1	1200	Mastercard	Maki	Montgomery	TX	United States
+Product1	1200	Amex	Anjan	Tokyo	Tokyo	Japan
+Product1	1200	Mastercard	Sarah	Manteno	IL	United States
+Product1	1200	Mastercard	Niamh	Benoni	Gauteng	South Africa
+Product2	3600	Diners	elizabeth r	Winter Haven	FL	United States
+Product1	1200	Visa	Elaine	Tranby	Buskerud	Norway
+Product1	1200	Diners	Elizabeth	Cork	Cork	Ireland
+Product1	1200	Visa	Sara	Fort Lauderdale	FL	United States
+Product2	3600	Amex	Tulin	Cranberry Twp	PA	United States
+Product1	1200	Visa	Kenneth	Arlington	VA	United States
+Product1	1200	Mastercard	Fiona	Lake Ronkonkoma	NY	United States
+Product1	1200	Visa	Christian	Alexandria	VA	United States
+Product3	7500	Diners	Michel	Lipari	Sicilia	Italy
+Product3	7500	Diners	natalie	Lipari	Sicilia	Italy
+Product1	1200	Diners	jure	Lipari	Sicilia	Italy
+Product1	1200	Amex	Elizabeth	Bluffton	SC	United States
+Product1	1200	Amex	Juliann	Winter Spgs	FL	United States
+Product1	1200	Mastercard	Julie	Chelmsford	MA	United States
+Product1	1200	Mastercard	philippa katherine	Cabinteely	Dublin	Ireland
+Product2	3600	Mastercard	Anthony	Toronto	Ontario	Canada
+Product1	1200	Visa	matthew	Cincinnati	OH	United States
+Product1	1200	Visa	Steven	Houston	TX	United States
+Product1	1200	Amex	Angie	Rodeo	CA	United States
+Product1	1200	Mastercard	Lauren	Poughkeepsie	NY	United States
+Product1	1200	Mastercard	Esther	Cincinnati	OH	United States
+Product1	1200	Visa	Elizabeth	North Eastham	MA	United States
+Product2	3600	Visa	marie-louise	Sitka	AK	United States
+Product2	3600	Mastercard	Tanya	Carcross	Yukon Territory	Canada
+Product1	1200	Mastercard	Detlev	Taby	Stockholm	Sweden
+Product2	3600	Visa	Stephen	Calgary	Alberta	Canada
+Product1	1200	Visa	Roza	Alcobendas	Madrid	Spain
+Product2	3600	Amex	John	Chicago	IL	United States
+Product1	1200	Mastercard	paula	Sammamish	WA	United States
+Product1	1200	Visa	Kathryn	Waiau Pa	Auckland	New Zealand
+Product1	1200	Mastercard	Isabelle	Ewa Beach	HI	United States
+Product1	1200	Visa	Maureen	Statesville	NC	United States
+Product1	1200	Visa	David	Kapaa	HI	United States
+Product1	1200	Diners	caterina	Burbank	CA	United States
+Product2	3600	Mastercard	Parth	Oegstgeest	Zuid-Holland	Netherlands
+Product1	1200	Visa	Alexia	Blackrock	Dublin	Ireland
+Product2	3600	Mastercard	Gloria Gail	WalcProduct3ee	Tyrol	Austria
+Product1	1200	Visa	Gloria Gail	Foxrock	Dublin	Ireland
+Product2	3600	Mastercard	Cheryl	Hilton Head	SC	United States
+Product3	7500	Visa	Frank and Christelle	Valley Center	CA	United States
+Product2	3600	Mastercard	Triona	Swampscott	MA	United States
+Product1	1200	Visa	Allison	Edinburgh	Scotland	United Kingdom
+Product1	1200	Diners	Phillip	San Antonio	TX	United States
+Product1	1200	Visa	jingyan	Bristol	RI	United States
+Product2	3600	Diners	clara	Perth	Western Australia	Australia
+Product1	1200	Mastercard	Selma	Greenville	TX	United States
+Product1	1200	Visa	Doug and Tina	Pls Vrds Est	CA	United States
+Product1	1200	Visa	Lauren	Hradec Kralove	East Bohemia	Czech Republic
+Product1	1200	Visa	Jen	Maidstone	England	United Kingdom
+Product1	1200	Visa	gladys	Saint Albans	England	United Kingdom
+Product1	1200	Mastercard	Gustavo	Voluntari	Bucuresti	Romania
+Product1	1200	Visa	Erica	Nadur		Malta
+Product1	1200	Diners	Hale	Morrison	CO	United States
+Product1	1200	Visa	Rosemary	Cobham	England	United Kingdom
+Product1	1200	Visa	Darian	Izmir	Izmir	Turkey
+Product1	1200	Mastercard	Kevin	Hollywood	CA	United States
+Product1	1200	Visa	Alyssa	Brighton	England	United Kingdom
+Product1	1200	Visa	Hale	Hawera	Taranaki	New Zealand
+Product1	1200	Mastercard	KELI	Worongary	Queensland	Australia
+Product1	1200	Visa	Glen	Atlantida	Guatemala	Guatemala
+Product1	1200	Visa	T	El Escorial	Madrid	Spain
+Product1	1200	Visa	christal	Morrison	CO	United States
+Product1	1200	Mastercard	Alex	Augusta	GA	United States
+Product2	3600	Mastercard	Anke	Avalon	New South Wales	Australia
+Product2	3600	Mastercard	TRICIA	Sydney	New South Wales	Australia
+Product1	1200	Mastercard	smith	Lahti	Etela-Suomen Laani	Finland
+Product1	1200	Visa	Macy	Inner City	Vienna	Austria
+Product1	1200	Mastercard	Lesleigh	Baden	Aargau	Switzerland
+Product2	3600	Diners	esther	Huddersfield	England	United Kingdom
+Product1	1200	Visa	Hans-Joerg	Belfast	Northern Ireland	United Kingdom
+Product2	3600	Visa	Christiane	Black River	Black River	Mauritius
+Product3	7500	Amex	Pamela	Skaneateles	NY	United States
+Product1	1200	Diners	julie	Haverhill	England	United Kingdom
+Product1	1200	Visa	Julia	Madison	WI	United States
+Time taken: 3.231 seconds, Fetched: 999 row(s)
+
+hive> desc s2;
+OK
+product             	string              	                    
+price               	int                 	                    
+pt                  	string              	                    
+name                	string              	                    
+city                	string              	                    
+state               	string              	                    
+country             	string              	                    
+Time taken: 0.192 seconds, Fetched: 7 row(s)
+hive> select count(product),country from s2 group by country;
+Query ID = hdoop_20230702232116_a4b236ed-0ac7-496a-8ceb-3f88bd20c8e0
+Total jobs = 1
+Launching Job 1 out of 1
+Number of reduce tasks not specified. Estimated from input data size: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1688319554503_0001, Tracking URL = http://ln-VirtualBox:8088/proxy/application_1688319554503_0001/
+Kill Command = /home/hdoop/hadoop-3.2.4/bin/mapred job  -kill job_1688319554503_0001
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+2023-07-02 23:21:35,173 Stage-1 map = 0%,  reduce = 0%
+2023-07-02 23:21:42,640 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 3.11 sec
+2023-07-02 23:21:51,094 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 5.53 sec
+MapReduce Total cumulative CPU time: 5 seconds 530 msec
+Ended Job = job_1688319554503_0001
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 1  Reduce: 1   Cumulative CPU: 5.53 sec   HDFS Read: 71215 HDFS Write: 1444 SUCCESS
+Total MapReduce CPU Time Spent: 5 seconds 530 msec
+OK
+1	Argentina
+38	Australia
+7	Austria
+1	Bahrain
+8	Belgium
+1	Bermuda
+5	Brazil
+1	Bulgaria
+1	CO
+76	Canada
+1	Cayman Isls
+1	China
+1	Costa Rica
+1	Country
+3	Czech Republic
+15	Denmark
+1	Dominican Republic
+2	Finland
+27	France
+25	Germany
+1	Greece
+1	Guatemala
+1	Hong Kong
+3	Hungary
+1	Iceland
+2	India
+49	Ireland
+1	Israel
+15	Italy
+2	Japan
+1	Jersey
+1	Kuwait
+1	Latvia
+1	Luxembourg
+1	Malaysia
+2	Malta
+1	Mauritius
+1	Moldova
+2	Monaco
+22	Netherlands
+6	New Zealand
+16	Norway
+2	Philippines
+2	Poland
+1	Romania
+1	Russia
+5	South Africa
+1	South Korea
+12	Spain
+13	Sweden
+36	Switzerland
+2	Thailand
+2	The Bahamas
+6	Turkey
+1	Ukraine
+6	United Arab Emirates
+100	United Kingdom
+462	United States
+Time taken: 36.058 seconds, Fetched: 58 row(s)
+hive> select count(product),state from s2 group by state;
+Query ID = hdoop_20230702232239_1cc88594-bc9e-41aa-bc1e-a9d06c455796
+Total jobs = 1
+Launching Job 1 out of 1
+Number of reduce tasks not specified. Estimated from input data size: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1688319554503_0002, Tracking URL = http://ln-VirtualBox:8088/proxy/application_1688319554503_0002/
+Kill Command = /home/hdoop/hadoop-3.2.4/bin/mapred job  -kill job_1688319554503_0002
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+2023-07-02 23:22:51,009 Stage-1 map = 0%,  reduce = 0%
+2023-07-02 23:22:57,319 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 2.01 sec
+2023-07-02 23:23:03,610 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 4.31 sec
+MapReduce Total cumulative CPU time: 4 seconds 310 msec
+Ended Job = job_1688319554503_0002
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 1  Reduce: 1   Cumulative CPU: 4.31 sec   HDFS Read: 71295 HDFS Write: 4790 SUCCESS
+Total MapReduce CPU Time Spent: 4 seconds 310 msec
+OK
+9	
+5	AK
+1	AL
+3	AR
+10	AZ
+2	Aargau
+1	Abu Zaby
+1	Al Manamah
+18	Alberta
+1	Alsace
+1	Andalucia
+1	Andhra Pradesh
+1	Antwerpen
+1	Arhus
+1	Attiki
+4	Auckland
+1	Bacs-Kiskun
+5	Baden-Wurttemberg
+2	Basel-Country
+1	Basel-Town
+4	Bayern
+1	Berlin
+1	Bern
+1	Black River
+1	Bohol
+18	British Columbia
+2	Brittany
+6	Brussels (Bruxelles)
+1	Bucuresti
+1	Budapest
+1	Buenos Aires
+1	Buskerud
+66	CA
+10	CO
+9	CT
+3	Catalonia
+1	Ceara
+1	Centennial
+1	Central Bohemia
+1	Chisinau
+10	Cork
+3	DC
+1	DE
+1	Distrito Nacional
+5	Dubayy
+22	Dublin
+1	East Bohemia
+86	England
+1	Etela-Suomen Laani
+29	FL
+2	Franche-Comte
+3	Frederiksborg
+1	Freeport
+21	GA
+3	Gauteng
+1	Gelderland
+1	General Santos
+7	Geneve
+1	Georgia
+2	Groningen
+1	Guangdong
+1	Guatemala
+9	HI
+1	Hainaut
+1	Hamburg
+1	Hamilton
+1	Haryana
+1	Heredia
+2	Hessen
+2	Hordaland
+3	IA
+2	ID
+16	IL
+2	IN
+8	Ile-de-France
+5	Istanbul
+1	Ita-Suomen Laani
+1	Izmir
+2	KS
+2	KY
+1	Kerry
+1	Kiev
+1	Kilkenny
+7	Kobenhavn
+1	Krung Thep
+1	Kuala Lumpur
+2	KwaZulu-Natal
+2	LA
+1	Lazio
+2	Limerick
+4	Lombardy
+1	Lorraine
+1	Louth
+2	Lower Austria
+3	Lower Saxony
+1	Luxembourg
+13	MA
+15	MD
+2	ME
+11	MI
+10	MN
+1	MO
+2	MS
+2	MT
+5	Madrid
+1	Manitoba
+1	Mayo
+1	Mazowieckie
+4	Meath
+1	Michigan
+1	Minas Gerais
+1	Moscow City
+2	Murcia
+7	NC
+1	NE
+1	NH
+19	NJ
+1	NM
+5	NV
+41	NY
+1	Neuchatel
+1	New Providence
+11	New South Wales
+1	Noord-Brabant
+7	Noord-Holland
+2	Nordrhein-Westfalen
+3	Northern Ireland
+1	Northwest Territories
+7	OH
+2	OR
+27	Ontario
+6	Oslo
+1	Ostergotland
+11	PA
+1	Pais Vasco
+1	Pays de la Loire
+1	Pest
+1	Phuket
+1	Pomorskie
+1	Prague
+4	Provence-Alpes-Cote d'Azur
+8	Quebec
+10	Queensland
+3	RI
+3	Rhineland-Palatinate
+7	Rhone-Alpes
+1	Riga
+1	Rio Grande do Sul
+4	Rogaland
+4	SC
+1	Saarland
+1	Santa Catarina
+1	Sao Paulo
+1	Sardinia
+2	Saskatchewan
+1	Saxony
+1	Schwyz
+9	Scotland
+3	Sicilia
+1	Skane
+1	Sogn og Fjordane
+1	Soul-t'ukpyolsi
+1	South Australia
+1	St Gallen
+1	Staden Kobenhavn
+1	Stara Zagora
+1	State
+9	Stockholm
+2	Storstrom
+11	TN
+37	TX
+2	Taranaki
+1	Tasmania
+1	Tel Aviv
+2	Thuringia
+2	Ticino
+2	Tipperary
+2	Tokyo
+4	Tuscany
+1	Tyrol
+5	UT
+1	Upper Normandy
+1	Uppsala
+1	Utrecht
+30	VA
+1	VI
+2	VT
+1	Vasterbotten
+8	Vaud
+2	Veneto
+2	Vestfold
+1	Vestsjalland
+9	Victoria
+4	Vienna
+1	Virginia
+14	WA
+5	WI
+2	Wales
+2	Waterford
+6	Western Australia
+1	Westmeath
+2	Wicklow
+1	Yukon Territory
+2	Zug
+10	Zuid-Holland
+8	Zurich
+Time taken: 26.157 seconds, Fetched: 206 row(s)
+hive> desc s2;
+OK
+product             	string              	                    
+price               	int                 	                    
+pt                  	string              	                    
+name                	string              	                    
+city                	string              	                    
+state               	string              	                    
+country             	string              	                    
+Time taken: 0.146 seconds, Fetched: 7 row(s)
+hive> select product,name from s2 group by product;
+FAILED: SemanticException [Error 10025]: Line 1:15 Expression not in GROUP BY key 'name'
+hive> select name,product from s2 group by product;
+FAILED: SemanticException [Error 10025]: Line 1:7 Expression not in GROUP BY key 'name'
+hive> select * from s2 limit 5;
+OK
+Product	NULL	Payment_Type	Name	City	State	Country
+Product1	1200	Mastercard	carolina	Basildon	England	United Kingdom
+Product1	1200	Visa	Betina	Parkville	MO	United States
+Product1	1200	Mastercard	Federica e Andrea	Astoria	OR	United States
+Product1	1200	Visa	Gouya	Echuca	Victoria	Australia
+Time taken: 0.389 seconds, Fetched: 5 row(s)
+hive> select name,product from s2 group by name,product;
+Query ID = hdoop_20230702232639_dba1ba52-e1c9-46e2-adeb-3cba58151f3a
+Total jobs = 1
+Launching Job 1 out of 1
+Number of reduce tasks not specified. Estimated from input data size: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1688319554503_0003, Tracking URL = http://ln-VirtualBox:8088/proxy/application_1688319554503_0003/
+Kill Command = /home/hdoop/hadoop-3.2.4/bin/mapred job  -kill job_1688319554503_0003
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+2023-07-02 23:26:49,361 Stage-1 map = 0%,  reduce = 0%
+2023-07-02 23:26:56,714 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 3.19 sec
+2023-07-02 23:27:04,049 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 5.94 sec
+MapReduce Total cumulative CPU time: 5 seconds 940 msec
+Ended Job = job_1688319554503_0003
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 1  Reduce: 1   Cumulative CPU: 5.94 sec   HDFS Read: 70088 HDFS Write: 22526 SUCCESS
+Total MapReduce CPU Time Spent: 5 seconds 940 msec
+OK
+Name	Product
+A	Product1
+AMY	Product1
+Aaron	Product1
+Abikay	Product1
+Adam	Product1
+Aidan	Product1
+Aideen and Jonathan	Product1
+Ailsa	Product1
+Alan	Product1
+Alessandra	Product1
+Alex	Product1
+Alexandria	Product1
+Alexia	Product1
+Alexis	Product1
+Alfredo A	Product1
+Alice	Product1
+Alicia	Product1
+Alicja	Product1
+Alison	Product1
+Allison	Product1
+Alva and Martin	Product1
+Alyssa	Product1
+Amanda	Product1
+Amy	Product1
+Ana	Product1
+AnaPaula	Product1
+Anastasia	Product1
+Andrea	Product1
+Andree	Product1
+Andrew	Product1
+Anett	Product1
+Angel Marie	Product1
+Angela	Product1
+Angelina  Patrick	Product1
+Angie	Product1
+Aniko	Product1
+Anja	Product1
+Anjan	Product1
+Ann	Product1
+Anna	Product1
+Anneli	Product1
+Annelies	Product1
+Annette	Product1
+Anthony	Product1
+Antje	Product1
+Antonella	Product1
+Anupam	Product1
+Anushka	Product1
+Ashlee	Product1
+Ashley	Product1
+Astrid	Product1
+Attie	Product1
+Audinet	Product1
+Audrey	Product1
+Aziz	Product1
+BALA	Product1
+BURCAK	Product1
+Babs	Product1
+Barbara	Product1
+Bato	Product1
+Bea	Product1
+Beate	Product1
+Beatrice	Product1
+Beatriz	Product1
+Beckie	Product1
+Ben	Product1
+Benoit	Product1
+Bent Erik	Product1
+Bernadett	Product1
+Bernadette	Product1
+Bertrand	Product1
+Betina	Product1
+Blanca Gabriela	Product1
+Bob	Product1
+Bonnie	Product1
+Brandi	Product1
+Brenda	Product1
+Brian	Product1
+Britlyn	Product1
+Bruce	Product1
+Bruce and Camille	Product1
+Bryan Kerrene	Product1
+C	Product1
+CLARE	Product1
+Cameron	Product1
+Camille and Carmen	Product1
+Campbell	Product1
+Cara	Product1
+Carmela	Product1
+Carmen	Product1
+Carole	Product1
+Caroline	Product1
+Caroline and Jonathan	Product1
+Cassandra	Product1
+Caterina	Product1
+Catherine	Product1
+Cathy	Product1
+Celina	Product1
+Chad	Product1
+Charis	Product1
+Charlene	Product1
+Chelsey	Product1
+Cherie	Product1
+Cherish	Product1
+Chevonne	Product1
+Chris	Product1
+Christian	Product1
+Christine	Product1
+Christof and Heidi	Product1
+Christy	Product1
+Christyna	Product1
+Cindy	Product1
+Claire	Product1
+Clare	Product1
+Cleo	Product1
+Conrad	Product1
+Corinne	Product1
+Cormac	Product1
+Costanza	Product1
+Courtney	Product1
+Craig	Product1
+Crystal	Product1
+DD	Product1
+DOREEN	Product1
+Damali	Product1
+Damian	Product1
+Dana	Product1
+Dania	Product1
+Danielle	Product1
+Daria	Product1
+Darian	Product1
+Darrah	Product1
+Darren	Product1
+Dave and Amy	Product1
+David	Product1
+Dawn	Product1
+Dean	Product1
+Debora	Product1
+DeeDee	Product1
+Delphine	Product1
+Denise	Product1
+Detlev	Product1
+Dez	Product1
+Diana	Product1
+Diane	Product1
+Dickson	Product1
+Djeiny	Product1
+Dottie	Product1
+Doug	Product1
+Doug and Tina	Product1
+Dr. Claudia	Product1
+Dr. Donald	Product1
+Ec	Product1
+Ed	Product1
+Elaine	Product1
+Eleanor	Product1
+Elena	Product1
+Elisa	Product1
+Elisabeth	Product1
+Elizabeth	Product1
+Ellen	Product1
+Ellen Walton	Product1
+Elsa	Product1
+Elyse	Product1
+Elyssa	Product1
+Emer	Product1
+Emily	Product1
+Emma	Product1
+Eric	Product1
+Erica	Product1
+Erika	Product1
+Esther	Product1
+Evelyn	Product1
+Family	Product1
+Family in	Product1
+Fatima	Product1
+Federica e Andrea	Product1
+Fernando	Product1
+Fie	Product1
+Filip and Teresa	Product1
+Fiona	Product1
+Fleur	Product1
+Frances	Product1
+Francoise	Product1
+Frank	Product1
+GAIA	Product1
+Gabriel	Product1
+Gabriella	Product1
+Genevieve	Product1
+George	Product1
+Georgia	Product1
+Georgina	Product1
+Gerald	Product1
+Gerardo	Product1
+Gerhard	Product1
+Gerlinde	Product1
+Gina	Product1
+Ginger	Product1
+Gitte	Product1
+Glen	Product1
+Glenn	Product1
+Gloria Gail	Product1
+Gouya	Product1
+Grace	Product1
+Greg	Product1
+Gustavo	Product1
+HELIDA	Product1
+Hale	Product1
+Hani	Product1
+Hans-Joerg	Product1
+Harriet	Product1
+Heather	Product1
+Heidi	Product1
+Helen	Product1
+Helena	Product1
+Helga	Product1
+Heloise	Product1
+Henrietta	Product1
+Hilde	Product1
+Hilde Karin	Product1
+Hollie	Product1
+Holly	Product1
+Hollyn	Product1
+Howard	Product1
+Hurst	Product1
+IMAN	Product1
+Ignacio	Product1
+Ina	Product1
+Isabelle	Product1
+JP	Product1
+Jackie	Product1
+Jacob	Product1
+James	Product1
+Jamie	Product1
+Jammie	Product1
+Jan	Product1
+Janaina	Product1
+Janet	Product1
+Janine	Product1
+Janis	Product1
+Jannik	Product1
+Jasinta Jeanne	Product1
+Jeannette	Product1
+Jeff	Product1
+Jeffrey	Product1
+Jen	Product1
+Jenevieve	Product1
+Jennifer	Product1
+Jeremy	Product1
+Jerome	Product1
+Jessica	Product1
+Jiri	Product1
+Jo	Product1
+Joachim	Product1
+Joanna	Product1
+Joanne	Product1
+Jocelyn	Product1
+Jodi	Product1
+Jodie	Product1
+Joelle	Product1
+Joern	Product1
+John	Product1
+Jolene	Product1
+Judith L.	Product1
+Judy	Product1
+Julia	Product1
+Juliann	Product1
+Julie	Product1
+June	Product1
+Jupiterlina Elika	Product1
+Justine	Product1
+KELI	Product1
+KERRY	Product1
+Kara	Product1
+Karen	Product1
+Karen and Andrew	Product1
+Karena	Product1
+Karin	Product1
+Karina	Product1
+Kasey	Product1
+Kate	Product1
+Katerina	Product1
+Katharina	Product1
+Katherine	Product1
+Kathrin	Product1
+Kathryn	Product1
+Katrin	Product1
+Katrine	Product1
+Kayla	Product1
+KeithMichelle	Product1
+Kellie	Product1
+Kelly	Product1
+Ken	Product1
+Kenneth	Product1
+Kenny	Product1
+Kerry	Product1
+Kevin	Product1
+Kim	Product1
+Kimberly	Product1
+Kirsten	Product1
+Kirstie	Product1
+Kit	Product1
+Klara	Product1
+Kofi	Product1
+Krista	Product1
+Kristen	Product1
+L	Product1
+LAURENCE	Product1
+Laine	Product1
+Lainey	Product1
+Laleh	Product1
+Larry	Product1
+Laura	Product1
+Lauren	Product1
+Leah	Product1
+Leanne	Product1
+Lena	Product1
+Lesa	Product1
+Lesleigh	Product1
+Liann	Product1
+Liban	Product1
+Lilly	Product1
+Lina	Product1
+Linda	Product1
+Lindi	Product1
+Lindsey	Product1
+Line	Product1
+Lisa	Product1
+Liza	Product1
+Lizelle	Product1
+Lolarae	Product1
+Louise	Product1
+Luc1nda	Product1
+Lusell	Product1
+Lydia	Product1
+Lynne	Product1
+M George	Product1
+Macy	Product1
+Madhu	Product1
+Madison	Product1
+Maggie	Product1
+Maie	Product1
+Maja	Product1
+Majken	Product1
+Maki	Product1
+Malahat	Product1
+Malinda	Product1
+Mandy	Product1
+Manoj	Product1
+Mareike	Product1
+Margaret	Product1
+Maria	Product1
+Maria Macarena	Product1
+Maria and Timothy	Product1
+Marian	Product1
+Maricel	Product1
+Marie	Product1
+Marie-Christine	Product1
+Marina	Product1
+Marion	Product1
+Mark	Product1
+Marlene	Product1
+Martin	Product1
+Mary	Product1
+Maryse	Product1
+Matt	Product1
+Maureen	Product1
+Maxine	Product1
+Megan	Product1
+Mehmet Fatih	Product1
+Melinda	Product1
+Melissa	Product1
+Michael	Product1
+Michaela	Product1
+Michele	Product1
+Michelle	Product1
+Mike	Product1
+Mimi	Product1
+Miriane	Product1
+Miss	Product1
+Mona	Product1
+Monica	Product1
+Monique	Product1
+Morgan	Product1
+Mrs	Product1
+Nacole	Product1
+Nadine	Product1
+Nanci	Product1
+Naseer	Product1
+Natalie	Product1
+Natasha	Product1
+Nathalie	Product1
+Niamh	Product1
+Nichol Jane	Product1
+Nicola	Product1
+Nicole	Product1
+Niki	Product1
+Nikki	Product1
+Nina	Product1
+Nita	Product1
+Nita and Trebor	Product1
+Nola	Product1
+Nona	Product1
+Novy	Product1
+Nuria	Product1
+Olga	Product1
+Olivia	Product1
+Orit	Product1
+Orsi	Product1
+Oscar	Product1
+Oswald	Product1
+Pam	Product1
+Pam and Rob	Product1
+Patricia	Product1
+Patrick	Product1
+Paul	Product1
+Paula	Product1
+Peter	Product1
+Petra	Product1
+Phillip	Product1
+Pia	Product1
+Pilar	Product1
+Polyxene	Product1
+Precious	Product1
+Priska	Product1
+R	Product1
+Rachel	Product1
+Randy	Product1
+Ravinder	Product1
+Rebecca	Product1
+Regina	Product1
+Renee	Product1
+Renee Elisabeth	Product1
+Rennae	Product1
+Reto	Product1
+Rhonda	Product1
+Rich	Product1
+Richard	Product1
+Richard and Comfort	Product1
+Riche Lou	Product1
+Rima	Product1
+Robin	Product1
+Roger	Product1
+Ronja	Product1
+Rosa Maria	Product1
+Rosemary	Product1
+Rowena	Product1
+Roza	Product1
+Ruangrote	Product1
+Ruby	Product1
+Ruth	Product1
+Ryan	Product1
+SUSAN	Product1
+SYLVIA	Product1
+Sabine	Product1
+Sabrina	Product1
+Saeko	Product1
+Sam	Product1
+Samantha	Product1
+Sandra  Thierry  Zoe	Product1
+Sandrine	Product1
+Sara	Product1
+Sarah	Product1
+Saraya	Product1
+Sari	Product1
+Sarka	Product1
+Scott	Product1
+Sean	Product1
+Selene	Product1
+Selma	Product1
+Shailesh	Product1
+Shane	Product1
+Shannon	Product1
+Sharon	Product1
+Sheila	Product1
+Sherri	Product1
+Shona	Product1
+Si	Product1
+Sigrun	Product1
+Simone	Product1
+Sonja	Product1
+Sophie	Product1
+Stacy	Product1
+Stanford	Product1
+Stefan	Product1
+Stephanie	Product1
+Steven	Product1
+Suejean	Product1
+Surat	Product1
+Sven	Product1
+Sylvia	Product1
+T	Product1
+TG	Product1
+Tabatha	Product1
+Tamar	Product1
+Tamara	Product1
+Tammy	Product1
+Tania	Product1
+Tara	Product1
+Tarah	Product1
+Tarja	Product1
+Tary	Product1
+Tatjana and Martin	Product1
+Tejal	Product1
+Terry	Product1
+Therese	Product1
+Tina	Product1
+Tod	Product1
+Tom	Product1
+Tomasz	Product1
+Toni	Product1
+Tori	Product1
+Tracey	Product1
+Tracy	Product1
+Tricia	Product1
+Trine Marie	Product1
+VERBENA	Product1
+Vanessa	Product1
+Veronique	Product1
+Vicki and Bill	Product1
+Visa	Product1
+Vishpala	Product1
+Wendy	Product1
+Whitney	Product1
+William	Product1
+Wouter and Andrea	Product1
+Yana	Product1
+Yoko	Product1
+Yvette	Product1
+ZENA	Product1
+ZOE	Product1
+Zane	Product1
+Zaneta	Product1
+Zoe	Product1
+adam	Product1
+alan	Product1
+alex	Product1
+alice and rudolf	Product1
+alison	Product1
+alix	Product1
+amanda	Product1
+amy	Product1
+andrea	Product1
+anissa	Product1
+ann	Product1
+anne	Product1
+ashton	Product1
+asuman	Product1
+asuncion	Product1
+ayse	Product1
+barbara	Product1
+beatrice	Product1
+breon	Product1
+brian	Product1
+burt	Product1
+camilla	Product1
+cari	Product1
+carolien	Product1
+carolina	Product1
+caterina	Product1
+cath	Product1
+catherine	Product1
+cheryl	Product1
+chris	Product1
+chrissy	Product1
+christal	Product1
+christina	Product1
+christy	Product1
+ciara and mike	Product1
+claire	Product1
+corina	Product1
+danielle	Product1
+dia	Product1
+elaine	Product1
+elisabeth	Product1
+erin	Product1
+eugenia	Product1
+familly	Product1
+frauke	Product1
+gail	Product1
+giovanna	Product1
+gladys	Product1
+isabel	Product1
+isabela	Product1
+isabelle	Product1
+jacqueline	Product1
+james	Product1
+janet	Product1
+jason	Product1
+jennifer	Product1
+jeremy	Product1
+jingyan	Product1
+jo	Product1
+john	Product1
+julie	Product1
+jure	Product1
+kathleen kane	Product1
+katie	Product1
+kemp	Product1
+kirsten	Product1
+lailani	Product1
+lamia	Product1
+leigh	Product1
+leiser	Product1
+lilia	Product1
+linda	Product1
+lorna	Product1
+loudon	Product1
+luciana	Product1
+luisa	Product1
+lydia	Product1
+maggie	Product1
+malin	Product1
+manon	Product1
+manuela	Product1
+maria	Product1
+mary	Product1
+matthew	Product1
+megan	Product1
+melanie	Product1
+michelle	Product1
+mike	Product1
+nathalie	Product1
+nicole	Product1
+nihan	Product1
+nina	Product1
+odile	Product1
+olla	Product1
+pamela	Product1
+paula	Product1
+philippa katherine	Product1
+pirunkit	Product1
+prof	Product1
+ruth	Product1
+samuel	Product1
+sandra	Product1
+sangeeta	Product1
+scott	Product1
+sherry	Product1
+simone	Product1
+smith	Product1
+sorcha	Product1
+stacy	Product1
+steve	Product1
+sunny	Product1
+suzanne	Product1
+valerie et nicolas	Product1
+verena	Product1
+Abdul-L	Product2
+Aline	Product2
+Anabela	Product2
+Anja Langer	Product2
+Anke	Product2
+Anne-line	Product2
+Anthony	Product2
+Astrid	Product2
+Barbara	Product2
+Baybars	Product2
+Bev	Product2
+Brittany	Product2
+Caren	Product2
+Caroline	Product2
+Charlene	Product2
+Charlotte	Product2
+Charmain	Product2
+Cheryl	Product2
+Christian	Product2
+Christiane	Product2
+Christophe	Product2
+Cindy	Product2
+Courtney	Product2
+Daniele	Product2
+Danny	Product2
+Debra	Product2
+Deirdre	Product2
+Derrick	Product2
+Elizabeth	Product2
+Eman	Product2
+Emillie	Product2
+Family	Product2
+Fatisha	Product2
+Geraldine	Product2
+Gerd W	Product2
+Ghislaine	Product2
+Gloria Gail	Product2
+Hanna Agla	Product2
+Hanne	Product2
+Irene	Product2
+Jacqui	Product2
+Jag	Product2
+James	Product2
+Jane	Product2
+Jean	Product2
+Jenna and Paul	Product2
+Jessica	Product2
+Jo	Product2
+John	Product2
+Judy	Product2
+Julia	Product2
+Jyoti	Product2
+Karen	Product2
+Karoline	Product2
+Kathryn	Product2
+Katie	Product2
+Kaylee	Product2
+Kees en Valesca	Product2
+Kelly	Product2
+Kelsi	Product2
+Kendra	Product2
+Keri	Product2
+Kerry	Product2
+Kristen	Product2
+LAURIE	Product2
+Laura	Product2
+Leila	Product2
+Lesley	Product2
+Lisa	Product2
+Liz	Product2
+Louise	Product2
+Lucien	Product2
+Maggie	Product2
+Marcia	Product2
+Melissa	Product2
+Meredith	Product2
+Michael	Product2
+Michelle	Product2
+Miye	Product2
+Monica	Product2
+Natasha	Product2
+Nicola	Product2
+Niki	Product2
+Olympe	Product2
+PATRICK	Product2
+Pam	Product2
+Pamela	Product2
+Parth	Product2
+Patricia	Product2
+Pavel	Product2
+Piret	Product2
+Ritz	Product2
+Rosemary	Product2
+Ruth	Product2
+STEPHANIE	Product2
+Sabine	Product2
+Scott	Product2
+Shiree	Product2
+Stephanie	Product2
+Stephen	Product2
+Sylvia	Product2
+TRICIA	Product2
+Tanya	Product2
+Therese	Product2
+Tiffany	Product2
+Tom	Product2
+Trina	Product2
+Triona	Product2
+Tulin	Product2
+Ulrika	Product2
+VIOLETA	Product2
+Valda	Product2
+ayelet	Product2
+carol	Product2
+clara	Product2
+cristina	Product2
+don	Product2
+elizabeth r	Product2
+esther	Product2
+eva	Product2
+george	Product2
+heidi	Product2
+jiyoung	Product2
+leanne	Product2
+marie-louise	Product2
+minjeong	Product2
+ron	Product2
+seemab	Product2
+shelby	Product2
+Amanda	Product3
+Anita	Product3
+Brona	Product3
+Diana	Product3
+Frank and Christelle	Product3
+Hans	Product3
+Julianne	Product3
+Karin	Product3
+Kristyn	Product3
+Marion	Product3
+Michael	Product3
+Michel	Product3
+Pamela	Product3
+natalie	Product3
+scott	Product3
+Time taken: 26.944 seconds, Fetched: 793 row(s)
+hive> select collect_list(name),product from s2 group by product;
+Query ID = hdoop_20230702232909_f8c94cc1-57a2-4a90-a750-83f9ab1483bf
+Total jobs = 1
+Launching Job 1 out of 1
+Number of reduce tasks not specified. Estimated from input data size: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1688319554503_0004, Tracking URL = http://ln-VirtualBox:8088/proxy/application_1688319554503_0004/
+Kill Command = /home/hdoop/hadoop-3.2.4/bin/mapred job  -kill job_1688319554503_0004
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+2023-07-02 23:29:19,412 Stage-1 map = 0%,  reduce = 0%
+2023-07-02 23:29:26,716 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 1.83 sec
+2023-07-02 23:29:34,012 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 4.39 sec
+MapReduce Total cumulative CPU time: 4 seconds 390 msec
+Ended Job = job_1688319554503_0004
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 1  Reduce: 1   Cumulative CPU: 4.39 sec   HDFS Read: 66798 HDFS Write: 7361 SUCCESS
+Total MapReduce CPU Time Spent: 4 seconds 390 msec
+OK
+["Name"]	Product
+["carolina","Betina","Federica e Andrea","Gouya","LAURENCE","Fleur","adam","Renee Elisabeth","Aidan","Stacy","Heidi","Sean","Georgia","Richard","Leanne","Janet","barbara","Hani","Jeremy","Janis","Nicola","asuman","Lena","Lisa","Bryan Kerrene","chris","Maxine","Family","Katherine","Linda","SYLVIA","Sheila","Stephanie","Kelly","jennifer","Anneli","Marie","Mehmet Fatih","Nicole","Sari","simone","Vanessa","Anupam","Karina","Frank","Angela","Darren","Nikki","chris","Stephanie","Anushka","June","Bonnie","Cindy","chrissy","Tamar","Bernadett","Dottie","Stefan","Gina","Lynne","Tammy","Kim","Bruce","Rosa Maria","Lydia","Eric","AnaPaula","Robin","Gitte","Dr. Claudia","Crystal","Delphine","nathalie","Lindi","Kevin","Clare","Alice","ZENA","Andrea","Rennae","Gerhard","Megan","Danielle","Tod","Janaina","Kofi","Jennifer","Jolene","anne","Alexis","Dez","Stephanie","Melissa","CLARE","catherine","Veronique","Bruce and Camille","Ellen","Amy","Anna","Regina","Heidi","Jessica","Petra","Brian","Kenny","ayse","Maria and Timothy","IMAN","Gerald","Annelies","Jocelyn","Kara","Orsi","Ben","Sam","Filip and Teresa","Grace","Chelsey","Charis","Marlene","Fie","Nicole","Linda","Janet","Jamie","Chad","sunny","Anna","Roger","Si","Sherri","Katherine","Clare","Campbell","Ruth","Doug","Shailesh","Conrad","Alison","Tracy","Kate","Sarka","Klara","Andrew","Vicki and Bill","David","Antonella","David","Greg","Jannik","Sylvia","Bernadette","Denise","luciana","Maja","Kirstie","Scott","Jammie","Frank","scott","Jiri","Dave and Amy","Rebecca","Melissa","jeremy","Randy","Djeiny","Andrea","Joanna","Jessica","alison","malin","Genevieve","Saraya","Anastasia","Elizabeth","Nicole","Jeffrey","Blanca Gabriela","Elisa","Bob","Elizabeth","Cathy","suzanne","Cassandra","Jennifer","nicole","Sean","Morgan","Harriet","Janine","Debora","Vishpala","Emer","john","lailani","Tricia","Celina","Patrick","Jacob","elisabeth","Kevin","Liban","Marie","Charlene","Orit","Alan","Lina","Larry","Jessica","Eric","Miriane","Jeff","christina","Shannon","Angela","Angela","Elaine","Helen","Nina","Karen","Georgina","Kellie","Terry","frauke","Simone","Hilde","Leah","Laine","kirsten","Anna","Babs","Gerlinde","Hollyn","leiser","Lisa","Ann","Nichol Jane","Beatriz","corina","manon","Isabelle","Lynne","Doug","AMY","Kim","HELIDA","Cameron","Wendy","Tara","James","Heloise","Gabriel","Jodie","Jeremy","Helga","Eleanor","Miss","Marie","Lisa","Priska","Katrine","Lisa","Sabrina","prof","KeithMichelle","Kim","anissa","john","Heidi","T","luisa","Nadine","Tina","Damali","Katherine","Kathryn","Veronique","Erica","L","Diana","Emma","Marina","Natalie","Brenda","Nita","Marian","Kevin","cari","Cassandra","Christof and Heidi","Ina","Lisa","Camille and Carmen","Ginger","breon","Marion","Pia","Dr. Donald","Rebecca","Monique","lilia","Lainey","Charlene","Fiona","burt","Stanford","ruth","Courtney","Anthony","Eleanor","GAIA","Zane","Beate","BALA","Mrs","Vanessa","Amanda","alex","T","Alva and Martin","Anett","KERRY","DeeDee","katie","Marina","camilla","pirunkit","Kathrin","Kate","Maie","verena","Marie-Christine","Gabriella","valerie et nicolas","Nicole","Renee","Nicole","Joachim","Monica","Nanci","Laura","ciara and mike","Sarah","leigh","Nuria","Tejal","Ignacio","ZOE","nihan","alan","lydia","Tracey","Anja","Jennifer","Holly","megan","Tarah","Gerardo","Joanne","Margaret","Laura","Whitney","Ravinder","Pam","Celina","Heather","Kathryn","Michele","Craig","Kim","maria","Elaine","Madison","Amanda","Krista","Sarah","Sarah","Christine","mary","Helena","nina","Mark","alice and rudolf","Costanza","Yoko","Barbara","Kit","linda","Christyna","Alicja","Rachel","Rachel","Jan","Karin","Sharon","Anna","Laura","Yana","Katherine","Therese","Francoise","Corinne","Ec","Carmen","Sandrine","asuncion","Sophie","Henrietta","DD","Jennifer","samuel","Angelina  Patrick","Sven","Toni","Patrick","jason","Tabatha","Natasha","Melinda","Luc1nda","Kim","Britlyn","Adam","Mimi","Liann","Sarah","Naseer","Caroline","Karena","janet","Sandra  Thierry  Zoe","Eleanor","Anna","Cara","carolien","Ana","Patrick","Heidi","Tom","Justine","isabel","Fatima","Judy","Glenn","Family in","Lauren","Jodi","simone","Sonja","Shane","Cleo","Benoit","Claire","Claire","Lindsey","jennifer","Amy","Whitney","Astrid","jo","Michelle","TG","Emily","Sarah","sherry","Carmela","Matt","Karen","Joanne","Stephanie","Hurst","Liza","Michele","cath","Andrea","Sabine","Aideen and Jonathan","George","Helen","C","chris","maggie","Mareike","lamia","Madhu","Visa","Kimberly","Tania","andrea","John","Nona","Oswald","Elyssa","michelle","Alicia","JP","sandra","Olivia","Annette","SUSAN","ashton","Scott","Lisa","Richard","Jasinta Jeanne","Rachel","Cherish","Shona","Abikay","Abikay","amanda","amanda","Stacy","Jacob","DOREEN","eugenia","Karen","Bea","Hilde Karin","Rima","Ruangrote","pamela","sangeeta","Anja","Andrew","Bato","Ailsa","Sophie","Katrin","Tomasz","Elizabeth","Nicole","Ryan","Mary","Aaron","Bertrand","Zoe","Trine Marie","Kim","John","Rich","Kayla","Richard and Comfort","Eric","Melissa","Dawn","Tamara","Ashley","familly","Ken","Tori","Precious","Michelle","Paula","Stephanie","kemp","Mona","Caroline","Andrea","Pilar","Lisa","A","Yvette","Nicole","Kelly","Samantha","Caterina","Kate","Tina","Emily","Maricel","Patricia","steve","Darrah","Sara","Erika","Audrey","Louise","Karen","Maki","Peter","Ashlee","Anja","Ellen Walton","Jessica","Wouter and Andrea","Pam and Rob","Elsa","kathleen kane","Selene","Christy","Elyse","Alexis","M George","John","cheryl","R","Cindy","Ed","Astrid","Nicole","Maria Macarena","Maggie","Manoj","Brenda","Lizelle","Cormac","jacqueline","Martin","Dean","VERBENA","Angel Marie","olla","Sarah","Esther","amy","Paul","Attie","odile","gail","Niki","Sarah","Beckie","Maryse","Majken","Karen and Andrew","Katerina","Mary","Oscar","Suejean","ann","Renee","Catherine","Rhonda","alix","Mike","Diane","Sigrun","Dania","Maria","Bent Erik","Kirsten","Dickson","Howard","Dana","Nola","Elizabeth","Matt","Vanessa","Rowena","Catherine","Sarah","sorcha","sorcha","Mary","Ronja","Nicola","BURCAK","isabelle","christy","Lilly","Mandy","Elena","Lolarae","Lisa","Nita and Trebor","Jenevieve","Damian","Lusell","Costanza","Vanessa","Evelyn","Nicola","Simone","Elisabeth","Kasey","James","Alyssa","Reto","Joelle","Nicole","Alexandria","Elisabeth","Ann","Olga","Courtney","stacy","Katrin","Alfredo A","Saeko","Antje","janet","claire","Nathalie","Daria","Judith L.","Audinet","William","Tatjana and Martin","Scott","Andree","Aziz","Fernando","Jo","Joern","Melissa","isabela","Nacole","Jennifer","Mary","Lisa","Debora","Kristen","Malinda","Sylvia","Jupiterlina Elika","Aniko","Petra","Heather","Kim","Ruby","Novy","Tammy","Alessandra","Cathy","dia","Lauren","Line","Sean","Sarah","Brian","Lesa","james","loudon","Allison","Surat","brian","Rachel","Hilde","Tarja","Megan","Katharina","Zaneta","Jeannette","Cherie","Tracey","Scott","Frances","Beatrice","Alison","elaine","Chevonne","danielle","Caroline and Jonathan","manuela","Carole","Hollie","mike","Malahat","Michaela","Amy","Brandi","erin","Tracy","Polyxene","Andrea","Jessica","David","Riche Lou","Chris","melanie","beatrice","lorna","Tary","Julie","Julie","Jerome","Laleh","Michael","Kerry","Veronique","Sarah","Simone","Jackie","giovanna","Elizabeth","Maki","Anjan","Sarah","Niamh","Elaine","Elizabeth","Sara","Kenneth","Fiona","Christian","jure","Elizabeth","Juliann","Julie","philippa katherine","matthew","Steven","Angie","Lauren","Esther","Elizabeth","Detlev","Roza","paula","Kathryn","Isabelle","Maureen","David","caterina","Alexia","Gloria Gail","Allison","Phillip","jingyan","Selma","Doug and Tina","Lauren","Jen","gladys","Gustavo","Erica","Hale","Rosemary","Darian","Kevin","Alyssa","Hale","KELI","Glen","T","christal","Alex","smith","Macy","Lesleigh","Hans-Joerg","julie","Julia"]	Product1
+["Gerd W","Sabine","James","Ritz","Sylvia","Anabela","Christiane","Baybars","Deirdre","Valda","Marcia","Cheryl","Therese","Abdul-L","heidi","jiyoung","Caren","Kristen","Bev","Tiffany","Patricia","Kaylee","STEPHANIE","Rosemary","ayelet","seemab","Lucien","Lesley","Anja Langer","Fatisha","Barbara","LAURIE","Cindy","Elizabeth","Irene","Jane","shelby","Miye","Daniele","Trina","Jenna and Paul","Jag","Maggie","Courtney","Jacqui","leanne","Anne-line","Ulrika","Pamela","cristina","ron","Elizabeth","Brittany","Aline","Debra","Ruth","Nicola","PATRICK","Niki","Laura","eva","carol","Family","Michelle","Kathryn","Geraldine","Tom","Michael","Pam","Pavel","Kendra","Leila","Derrick","Emillie","Kelly","Michael","Natasha","Meredith","Hanne","Therese","Katie","george","Hanna Agla","Charlene","Christophe","Kees en Valesca","Eman","Julia","Jyoti","Keri","Danny","don","Kelsi","minjeong","Charlotte","Piret","Olympe","Monica","Michael","Louise","Kerry","VIOLETA","Melissa","Karoline","Jo","Astrid","Stephanie","Scott","Judy","Charmain","Liz","Christiane","Shiree","Jessica","Ghislaine","Christian","Jean","Caroline","Karen","Lisa","elizabeth r","Tulin","Anthony","marie-louise","Tanya","Stephen","John","Parth","Gloria Gail","Cheryl","Triona","clara","Anke","TRICIA","esther","Christiane"]	Product2
+["Julianne","Amanda","Kristyn","Marion","Diana","Hans","scott","Michael","Karin","Brona","Anita","Michel","natalie","Frank and Christelle","Pamela"]	Product3
+Time taken: 26.706 seconds, Fetched: 4 row(s)
+hive> create view mastercardview as
+    > select * from s2
+    > where pt="mastercard";
+OK
+Time taken: 0.622 seconds
+hive> select * from mastercardview;
+OK
+Time taken: 0.391 seconds
+hive> create view mastercardview as
+    > select * from s2
+    > where pt="Mastercard";
+FAILED: Execution Error, return code 1 from org.apache.hadoop.hive.ql.exec.DDLTask. Table already exists: sales.mastercardview
+hive> create view mastercardview1 as
+    > select * from s2
+    > where pt="Mastercard";
+OK
+Time taken: 0.32 seconds
+hive> select * from mastercardview1;
+OK
+Product1	1200	Mastercard	carolina	Basildon	England	United Kingdom
+Product1	1200	Mastercard	Federica e Andrea	Astoria	OR	United States
+Product1	1200	Mastercard	Fleur	Peoria	IL	United States
+Product1	1200	Mastercard	adam	Martin	TN	United States
+Product1	1200	Mastercard	Renee Elisabeth	Tel Aviv	Tel Aviv	Israel
+Product1	1200	Mastercard	Sean	Shavano Park	TX	United States
+Product1	1200	Mastercard	Nicola	Roodepoort	Gauteng	South Africa
+Product1	1200	Mastercard	Lena	Kuopio	Ita-Suomen Laani	Finland
+Product1	1200	Mastercard	Katherine	New York	NY	United States
+Product1	1200	Mastercard	Linda	Miami	FL	United States
+Product1	1200	Mastercard	SYLVIA	Vesenaz	Geneve	Switzerland
+Product1	1200	Mastercard	Stephanie	Badhoevedorp	Noord-Holland	Netherlands
+Product1	1200	Mastercard	Anneli	Houston	TX	United States
+Product1	1200	Mastercard	Marie	Ball Ground	GA	United States
+Product1	1200	Mastercard	Sari	Newbury	England	United Kingdom
+Product1	1200	Mastercard	simone	Kobenhavn	Kobenhavn	Denmark
+Product1	1200	Mastercard	Frank	Melbourne	Victoria	Australia
+Product1	1200	Mastercard	Nikki	New Rochelle	NY	United States
+Product1	1200	Mastercard	June	Beachwood	OH	United States
+Product1	1200	Mastercard	Bonnie	Saltsjobaden	Stockholm	Sweden
+Product1	1200	Mastercard	chrissy	W Lebanon	NH	United States
+Product1	1200	Mastercard	Tamar	Headley	England	United Kingdom
+Product2	3600	Mastercard	Deirdre	Lausanne	Vaud	Switzerland
+Product1	1200	Mastercard	Bernadett	Southampton	England	United Kingdom
+Product1	1200	Mastercard	Tammy	Morges	Vaud	Switzerland
+Product1	1200	Mastercard	AnaPaula	Helens Bay	Northern Ireland	United Kingdom
+Product1	1200	Mastercard	Lindi	Vancouver	British Columbia	Canada
+Product2	3600	Mastercard	Valda	Irvine	CA	United States
+Product2	3600	Mastercard	Marcia	Telgte	Nordrhein-Westfalen	Germany
+Product1	1200	Mastercard	Kevin	Cheltenham	England	United Kingdom
+Product1	1200	Mastercard	ZENA	Honolulu	HI	United States
+Product1	1200	Mastercard	Danielle	Rathgar	Dublin	Ireland
+Product1	1200	Mastercard	Tod	Coral Gables	FL	United States
+Product1	1200	Mastercard	anne	Bournemouth	England	United Kingdom
+Product1	1200	Mastercard	Alexis	Genoa	IL	United States
+Product1	1200	Mastercard	catherine	Keller	VA	United States
+Product1	1200	Mastercard	Bruce and Camille	Clinton	NJ	United States
+Product1	1200	Mastercard	Ellen	Owensboro	KY	United States
+Product1	1200	Mastercard	Regina	Glimmen	Groningen	Netherlands
+Product1	2100	Mastercard	Gerald	Mahopac	NY	United States
+Product1	1200	Mastercard	Annelies	Ile-Perrot	Quebec	Canada
+Product1	1200	Mastercard	Jamie	Houston	TX	United States
+Product1	1200	Mastercard	sunny	Amsterdam	Noord-Holland	Netherlands
+Product1	1200	Mastercard	Si	Holte	Kobenhavn	Denmark
+Product1	1200	Mastercard	Katherine	Hofheim am Taunus	Hessen	Germany
+Product1	1200	Mastercard	Clare	Lafayette	CA	United States
+Product3	7500	Mastercard	Julianne	Navan	Meath	Ireland
+Product1	1200	Mastercard	Tracy	Louisville	KY	United States
+Product1	1200	Mastercard	Andrew	Winnipeg	Manitoba	Canada
+Product1	1200	Mastercard	David	Deptford	NJ	United States
+Product1	1200	Mastercard	Antonella	Amsterdam	Noord-Holland	Netherlands
+Product1	1200	Mastercard	Jammie	Belmont	MA	United States
+Product1	1200	Mastercard	Frank	Old Greenwich	CT	United States
+Product1	1200	Mastercard	scott	Coconut Grove	FL	United States
+Product1	1200	Mastercard	Rebecca	Norfolk	VA	United States
+Product3	7500	Mastercard	Amanda	Shreveport	LA	United States
+Product1	1200	Mastercard	Andrea	Shreveport	LA	United States
+Product1	1200	Mastercard	Saraya	Dresden	Saxony	Germany
+Product1	1200	Mastercard	Anastasia	NYC	NY	United States
+Product1	1200	Mastercard	Blanca Gabriela	Irving	TX	United States
+Product2	3600	Mastercard	Patricia	Portola Valley	CA	United States
+Product1	1200	Mastercard	Cassandra	San Carlos	CA	United States
+Product1	1200	Mastercard	Jennifer	Chicago	IL	United States
+Product1	1200	Mastercard	Morgan	Coomera	Queensland	Australia
+Product1	1200	Mastercard	Janine	Corbin City	NJ	United States
+Product1	1200	Mastercard	Debora	Lakeside	CA	United States
+Product1	1200	Mastercard	lailani	Anchorage	AK	United States
+Product1	1200	Mastercard	Jacob	Winter Haven	FL	United States
+Product1	1200	Mastercard	Liban	Stavanger	Rogaland	Norway
+Product2	3600	Mastercard	Anja Langer	Saint Paul	MN	United States
+Product1	1200	Mastercard	Shannon	Buffalo Grove	IL	United States
+Product1	1200	Mastercard	Angela	Newburgh	Scotland	United Kingdom
+Product1	1200	Mastercard	Elaine	Vicenza	Veneto	Italy
+Product1	1200	Mastercard	Terry	San Antonio	TX	United States
+Product2	3600	Mastercard	Cindy	Englewood	CO	United States
+Product2	3600	Mastercard	Elizabeth	Den Haag	Zuid-Holland	Netherlands
+Product1	1200	Mastercard	Anna	Lafayette	CA	United States
+Product1	1200	Mastercard	Gerlinde	Hellerup	Kobenhavn	Denmark
+Product1	1200	Mastercard	Hollyn	London	England	United Kingdom
+Product2	3600	Mastercard	Irene	Munich	Bayern	Germany
+Product1	1200	Mastercard	Nichol Jane	Midland Park	NJ	United States
+Product1	1200	Mastercard	corina	Neustift am Walde	Vienna	Austria
+Product1	1200	Mastercard	manon	Neustift am Walde	Vienna	Austria
+Product1	1200	Mastercard	Doug	Huntington	NY	United States
+Product1	1200	Mastercard	AMY	The Woodlands	TX	United States
+Product1	1200	Mastercard	HELIDA	White House	TN	United States
+Product1	1200	Mastercard	Wendy	Lake Mahopac	NY	United States
+Product2	3600	Mastercard	Jane	Biot	Provence-Alpes-Cote d'Azur	France
+Product1	1200	Mastercard	Tara	Killiney	Dublin	Ireland
+Product1	1200	Mastercard	Gabriel	Three Hills	Alberta	Canada
+Product1	1200	Mastercard	Lisa	Princeton	NJ	United States
+Product1	1200	Mastercard	Priska	Calgary	Alberta	Canada
+Product1	1200	Mastercard	KeithMichelle	Houston	TX	United States
+Product1	1200	Mastercard	Kim	London	England	United Kingdom
+Product1	1200	Mastercard	john	Glan-Munchweiler	Rhineland-Palatinate	Germany
+Product1	1200	Mastercard	T	Veigy-Foncenex	Rhone-Alpes	France
+Product1	1200	Mastercard	Tina	Calgary	Alberta	Canada
+Product1	1200	Mastercard	Diana	Kuala Lumpur	Kuala Lumpur	Malaysia
+Product1	1200	Mastercard	Emma	Sydney	New South Wales	Australia
+Product1	1200	Mastercard	Natalie	Bryceville	FL	United States
+Product1	1200	Mastercard	Marian	Durban	KwaZulu-Natal	South Africa
+Product1	1200	Mastercard	Pia	Sola	Rogaland	Norway
+Product1	1200	Mastercard	Rebecca	Berlin	Berlin	Germany
+Product1	1200	Mastercard	Monique	Waldorf	MD	United States
+Product1	1200	Mastercard	Lainey	Lakeville	MN	United States
+Product2	3600	Mastercard	Jag	Saint-Cergues	Rhone-Alpes	France
+Product1	1200	Mastercard	Charlene	Vancouver	British Columbia	Canada
+Product1	1200	Mastercard	burt	Rathfarnham	Dublin	Ireland
+Product1	1200	Mastercard	Stanford	Howell	MI	United States
+Product1	1200	Mastercard	Zane	Warlingham	England	United Kingdom
+Product1	1200	Mastercard	Beate	Hamburg	Hamburg	Germany
+Product1	1200	Mastercard	alex	Farmingtn Hls	MI	United States
+Product1	1200	Mastercard	T	Brooklyn	NY	United States
+Product1	1200	Mastercard	Alva and Martin	Great Falls	VA	United States
+Product2	3600	Mastercard	Jacqui	Scottsdale	AZ	United States
+Product2	3600	Mastercard	leanne	Clyde Hill	WA	United States
+Product1	1200	Mastercard	Kate	Stockholm	Stockholm	Sweden
+Product1	1200	Mastercard	Maie	Queen Creek	AZ	United States
+Product1	1250	Mastercard	verena	Queen Creek	AZ	United States
+Product1	1200	Mastercard	Gabriella	Austin	TX	United States
+Product1	1200	Mastercard	valerie et nicolas	Glenn Dale	MD	United States
+Product1	1200	Mastercard	Nicole	South Melbourne	Victoria	Australia
+Product1	1200	Mastercard	Joachim	Fortaleza	Ceara	Brazil
+Product1	1200	Mastercard	Laura	Coconut Grove	FL	United States
+Product2	3600	Mastercard	Anne-line	Zug	Zug	Switzerland
+Product2	3600	Mastercard	Ulrika	Scottsdale	AZ	United States
+Product1	1200	Mastercard	Nuria	Superior	CO	United States
+Product1	1200	Mastercard	Tejal	London	England	United Kingdom
+Product1	1200	Mastercard	Ignacio	Engleside	VA	United States
+Product1	1200	Mastercard	nihan	Roanoke	VA	United States
+Product1	1200	Mastercard	Tarah	San Jose	CA	United States
+Product1	1200	Mastercard	Celina	Den Haag	Zuid-Holland	Netherlands
+Product1	1200	Mastercard	Kathryn	Pacific Beach	CA	United States
+Product1	1200	Mastercard	Sarah	Sandymount	Dublin	Ireland
+Product3	7500	Mastercard	Diana	Campinas	Sao Paulo	Brazil
+Product1	1200	Mastercard	Yoko	Andover	MA	United States
+Product1	1200	Mastercard	Barbara	La Crescenta	CA	United States
+Product1	1200	Mastercard	Kit	Suwanee	GA	United States
+Product1	1200	Mastercard	Christyna	Calgary	Alberta	Canada
+Product1	1200	Mastercard	Sharon	Ajax	Ontario	Canada
+Product1	1200	Mastercard	Anna	New York	NY	United States
+Product1	1200	Mastercard	Laura	Fairfield	IA	United States
+Product1	1200	Mastercard	Sandrine	Walnut Creek	CA	United States
+Product1	1200	Mastercard	asuncion	Centennial	CO	United States
+Product1	1200	Mastercard	Natasha	Pasadena	CA	United States
+Product1	1200	Mastercard	Melinda	Buffalo Grove	IL	United States
+Product1	1200	Mastercard	Sarah	Floyds Knobs	IN	United States
+Product1	1200	Mastercard	Eleanor	Edinburgh	Scotland	United Kingdom
+Product1	1200	Mastercard	Ana	Hong Kong		Hong Kong
+Product1	1200	Mastercard	simone	Lyngby	Kobenhavn	Denmark
+Product1	1200	Mastercard	Shane	Zurich	Zurich	Switzerland
+Product1	1200	Mastercard	Cleo	Pacific Palisades	CA	United States
+Product2	3600	Mastercard	PATRICK	Ban Khlong Sip	Krung Thep	Thailand
+Product1	1200	Mastercard	Whitney	Dumbleton	England	United Kingdom
+Product1	1200	Mastercard	TG	Zagore	Stara Zagora	Bulgaria
+Product1	1200	Mastercard	Emily	Vecmilgravis	Riga	Latvia
+Product1	1200	Mastercard	Carmela	Hannover	Lower Saxony	Germany
+Product1	1200	Mastercard	Michele	Buffalo	NY	United States
+Product1	1200	Mastercard	Sabine	Milton Keynes	England	United Kingdom
+Product1	1200	Mastercard	Aideen and Jonathan	Kecskemet	Bacs-Kiskun	Hungary
+Product1	1200	Mastercard	John	Griffith	New South Wales	Australia
+Product1	1200	Mastercard	Alicia	Lincoln	NE	United States
+Product1	1200	Mastercard	JP	Tierp	Uppsala	Sweden
+Product1	1200	Mastercard	sandra	Burr Oak	IA	United States
+Product2	3600	Mastercard	Tom	Killeen	TX	United States
+Product2	3600	Mastercard	Pavel	London	England	United Kingdom
+Product1	1200	Mastercard	Abikay	Fullerton	CA	United States
+Product1	1200	Mastercard	DOREEN	Madrid	Madrid	Spain
+Product1	1200	Mastercard	Andrew	Sevilla	Andalucia	Spain
+Product1	1200	Mastercard	Ailsa	Lindenhurst	NY	United States
+Product2	3600	Mastercard	Kelly	Vancouver	British Columbia	Canada
+Product2	3600	Mastercard	Meredith	Kloten	Zurich	Switzerland
+Product1	1200	Mastercard	Nicole	Fayetteville	NC	United States
+Product1	1200	Mastercard	Zoe	Coventry	England	United Kingdom
+Product1	1200	Mastercard	Trine Marie	Orillia	Ontario	Canada
+Product1	1200	Mastercard	Melissa	Geneve	Geneve	Switzerland
+Product1	1200	Mastercard	Tamara	Klosterneuburg	Lower Austria	Austria
+Product1	1200	Mastercard	Ken	Sidcup	England	United Kingdom
+Product2	3600	Mastercard	Hanne	Phoenix	MD	United States
+Product1	1200	Mastercard	Andrea	Brondby Strand	Kobenhavn	Denmark
+Product1	1200	Mastercard	Pilar	Florence	Tuscany	Italy
+Product1	1200	Mastercard	Yvette	Aubonne	Vaud	Switzerland
+Product1	1200	Mastercard	Kelly	Hendersonville	TN	United States
+Product1	1200	Mastercard	Samantha	Watford	England	United Kingdom
+Product1	1200	Mastercard	Tina	Anglesea	Victoria	Australia
+Product1	1200	Mastercard	steve	Evires	Rhone-Alpes	France
+Product1	1200	Mastercard	Anja	New York	NY	United States
+Product1	1200	Mastercard	Jessica	Woodland Hills	CA	United States
+Product1	1200	Mastercard	Alexis	Ehingen an der Donau	Baden-Wurttemberg	Germany
+Product1	1200	Mastercard	Astrid	Canterbury	England	United Kingdom
+Product1	1200	Mastercard	Lizelle	Mililani	HI	United States
+Product1	1200	Mastercard	Dean	Rockingham	Western Australia	Australia
+Product1	1200	Mastercard	Angel Marie	Den Haag	Zuid-Holland	Netherlands
+Product2	3600	Mastercard	Jyoti	Tunbridge Wells	England	United Kingdom
+Product1	1200	Mastercard	Attie	Cypress	CA	United States
+Product1	1200	Mastercard	Sarah	Coppell	TX	United States
+Product2	3600	Mastercard	don	Cagliari	Sardinia	Italy
+Product1	1200	Mastercard	Mary	Baile Atha Bui	Meath	Ireland
+Product2	3600	Mastercard	Kelsi	Utrecht	Utrecht	Netherlands
+Product1	1200	Mastercard	Nola	Den Haag	Zuid-Holland	Netherlands
+Product1	1200	Mastercard	Sarah	Ridgefield	CT	United States
+Product1	1200	Mastercard	Mary	Stuttgart	Baden-Wurttemberg	Germany
+Product1	1200	Mastercard	christy	Germantown	TN	United States
+Product1	1200	Mastercard	Elena	New Rochelle	NY	United States
+Product1	1200	Mastercard	Lisa	South Waterford	ME	United States
+Product1	1200	Mastercard	Nita and Trebor	Washington Township	OH	United States
+Product2	3600	Mastercard	Piret	Bunbury	Western Australia	Australia
+Product1	1200	Mastercard	Damian	Mettlach	Saarland	Germany
+Product1	1200	Mastercard	Lusell	Oberwil	Basel-Country	Switzerland
+Product1	1200	Mastercard	Elisabeth	Wilmington	NC	United States
+Product1	1200	Mastercard	Nicole	Simcoe	Ontario	Canada
+Product1	1200	Mastercard	Alexandria	Lebanon	PA	United States
+Product1	1200	Mastercard	Elisabeth	Birkdale	Queensland	Australia
+Product2	3600	Mastercard	Louise	Balgach	St Gallen	Switzerland
+Product1	1200	Mastercard	Nathalie	Haymarket	VA	United States
+Product1	1200	Mastercard	Daria	George Town		Cayman Isls
+Product1	1200	Mastercard	Scott	Den Haag	Zuid-Holland	Netherlands
+Product3	7500	Mastercard	Brona	Den Haag	Zuid-Holland	Netherlands
+Product1	1200	Mastercard	Andree	Newmarket	Cork	Ireland
+Product1	1200	Mastercard	isabela	Reston	VA	United States
+Product2	3600	Mastercard	Karoline	Powell River	British Columbia	Canada
+Product2	3600	Mastercard	Jo	Huntington Beach	CA	United States
+Product1	1200	Mastercard	Malinda	Oxford	England	United Kingdom
+Product1	1200	Mastercard	Petra	San Francisco	CA	United States
+Product1	1200	Mastercard	Heather	Baluan	General Santos	Philippines
+Product1	1200	Mastercard	Kim	Brussels	Brussels (Bruxelles)	Belgium
+Product1	1200	Mastercard	Tammy	Milford	ME	United States
+Product1	1200	Mastercard	Cathy	Kidderminster	England	United Kingdom
+Product1	1200	Mastercard	Lesa	Vespasiano	Minas Gerais	Brazil
+Product1	1200	Mastercard	james	Nashville	TN	United States
+Product1	1200	Mastercard	loudon	Ottawa	Ontario	Canada
+Product1	1200	Mastercard	Allison	Naples	FL	United States
+Product1	1200	Mastercard	Surat	Bridgewater	NJ	United States
+Product2	3600	Mastercard	Judy	Washington	DC	United States
+Product1	1200	Mastercard	Hilde	Groningen	Groningen	Netherlands
+Product1	1200	Mastercard	Tarja	Villars	Vaud	Switzerland
+Product2	3600	Mastercard	Christiane	Mission	British Columbia	Canada
+Product1	1200	Mastercard	Tracey	Harold's Cross	Dublin	Ireland
+Product1	1200	Mastercard	Beatrice	Wilmington	DE	United States
+Product1	1200	Mastercard	Caroline and Jonathan	Chichester	England	United Kingdom
+Product1	1200	Mastercard	Malahat	Minneapolis	MN	United States
+Product1	1200	Mastercard	Brandi	Edmonton	Alberta	Canada
+Product2	3600	Mastercard	Jean	Arlington	VA	United States
+Product1	1200	Mastercard	Jessica	Chiefland	FL	United States
+Product1	1200	Mastercard	David	Stavenger	Rogaland	Norway
+Product2	3600	Mastercard	Caroline	Begnins	Vaud	Switzerland
+Product1	1200	Mastercard	Chris	Den Haag	Zuid-Holland	Netherlands
+Product1	1200	Mastercard	lorna	Castle Rock	CO	United States
+Product1	1200	Mastercard	Jerome	Madrid	Madrid	Spain
+Product3	7500	Mastercard	Anita	Fresno	TX	United States
+Product1	1200	Mastercard	Veronique	Fresno	TX	United States
+Product1	1200	Mastercard	Maki	Montgomery	TX	United States
+Product1	1200	Mastercard	Sarah	Manteno	IL	United States
+Product1	1200	Mastercard	Niamh	Benoni	Gauteng	South Africa
+Product1	1200	Mastercard	Fiona	Lake Ronkonkoma	NY	United States
+Product1	1200	Mastercard	Julie	Chelmsford	MA	United States
+Product1	1200	Mastercard	philippa katherine	Cabinteely	Dublin	Ireland
+Product2	3600	Mastercard	Anthony	Toronto	Ontario	Canada
+Product1	1200	Mastercard	Lauren	Poughkeepsie	NY	United States
+Product1	1200	Mastercard	Esther	Cincinnati	OH	United States
+Product2	3600	Mastercard	Tanya	Carcross	Yukon Territory	Canada
+Product1	1200	Mastercard	Detlev	Taby	Stockholm	Sweden
+Product1	1200	Mastercard	paula	Sammamish	WA	United States
+Product1	1200	Mastercard	Isabelle	Ewa Beach	HI	United States
+Product2	3600	Mastercard	Parth	Oegstgeest	Zuid-Holland	Netherlands
+Product2	3600	Mastercard	Gloria Gail	WalcProduct3ee	Tyrol	Austria
+Product2	3600	Mastercard	Cheryl	Hilton Head	SC	United States
+Product2	3600	Mastercard	Triona	Swampscott	MA	United States
+Product1	1200	Mastercard	Selma	Greenville	TX	United States
+Product1	1200	Mastercard	Gustavo	Voluntari	Bucuresti	Romania
+Product1	1200	Mastercard	Kevin	Hollywood	CA	United States
+Product1	1200	Mastercard	KELI	Worongary	Queensland	Australia
+Product1	1200	Mastercard	Alex	Augusta	GA	United States
+Product2	3600	Mastercard	Anke	Avalon	New South Wales	Australia
+Product2	3600	Mastercard	TRICIA	Sydney	New South Wales	Australia
+Product1	1200	Mastercard	smith	Lahti	Etela-Suomen Laani	Finland
+Product1	1200	Mastercard	Lesleigh	Baden	Aargau	Switzerland
+Time taken: 0.231 seconds, Fetched: 277 row(s)
+hive> select * from s2 where city ="Seattle";
+OK
+Product1	1200	Visa	Vicki and Bill	Seattle	WA	United States
+Product1	1200	Visa	Craig	Seattle	WA	United States
+Product1	1200	Visa	Kim	Seattle	WA	United States
+Product2	3600	Visa	cristina	Seattle	WA	United States
+Product1	1200	Amex	Justine	Seattle	WA	United States
+Product1	1200	Visa	Reto	Seattle	WA	United States
+Time taken: 0.393 seconds, Fetched: 6 row(s)
+hive> desc s2;
+OK
+product             	string              	                    
+price               	int                 	                    
+pt                  	string              	                    
+name                	string              	                    
+city                	string              	                    
+state               	string              	                    
+country             	string              	                    
+Time taken: 0.146 seconds, Fetched: 7 row(s)
+
+
+hive> SELECT COUNT(name) AS max_name
+    > from s
+    > where state="Ontario"
+    > group by state
+    > order by max_name desc
+    > limit 1;
+Query ID = hdoop_20230703000303_d77b18ba-2d3f-4541-8320-0bbe43311cb0
+Total jobs = 2
+Launching Job 1 out of 2
+Number of reduce tasks not specified. Estimated from input data size: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1688319554503_0005, Tracking URL = http://ln-VirtualBox:8088/proxy/application_1688319554503_0005/
+Kill Command = /home/hdoop/hadoop-3.2.4/bin/mapred job  -kill job_1688319554503_0005
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+2023-07-03 00:03:19,815 Stage-1 map = 0%,  reduce = 0%
+2023-07-03 00:03:30,441 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 3.98 sec
+2023-07-03 00:03:40,034 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 6.94 sec
+MapReduce Total cumulative CPU time: 6 seconds 940 msec
+Ended Job = job_1688319554503_0005
+Launching Job 2 out of 2
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1688319554503_0006, Tracking URL = http://ln-VirtualBox:8088/proxy/application_1688319554503_0006/
+Kill Command = /home/hdoop/hadoop-3.2.4/bin/mapred job  -kill job_1688319554503_0006
+Hadoop job information for Stage-2: number of mappers: 1; number of reducers: 1
+2023-07-03 00:03:58,392 Stage-2 map = 0%,  reduce = 0%
+2023-07-03 00:04:09,190 Stage-2 map = 100%,  reduce = 0%, Cumulative CPU 3.02 sec
+2023-07-03 00:04:17,616 Stage-2 map = 100%,  reduce = 100%, Cumulative CPU 5.99 sec
+MapReduce Total cumulative CPU time: 5 seconds 990 msec
+Ended Job = job_1688319554503_0006
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 1  Reduce: 1   Cumulative CPU: 6.94 sec   HDFS Read: 71642 HDFS Write: 114 SUCCESS
+Stage-Stage-2: Map: 1  Reduce: 1   Cumulative CPU: 5.99 sec   HDFS Read: 7016 HDFS Write: 102 SUCCESS
+Total MapReduce CPU Time Spent: 12 seconds 930 msec
+OK
+27
+Time taken: 75.685 seconds, Fetched: 1 row(s)
+hive> select count(product) from s where price is between 1500 and 3600;
+NoViableAltException(46@[464:39: (a= KW_IS isCondition )?])
+	at org.antlr.runtime.DFA.noViableAlt(DFA.java:158)
+	at org.antlr.runtime.DFA.predict(DFA.java:144)
+	at org.apache.hadoop.hive.ql.parse.HiveParser_IdentifiersParser.precedenceUnarySuffixExpression(HiveParser_IdentifiersParser.java:7733)
+	at org.apache.hadoop.hive.ql.parse.HiveParser_IdentifiersParser.precedenceBitwiseXorExpression(HiveParser_IdentifiersParser.java:7889)
+	at org.apache.hadoop.hive.ql.parse.HiveParser_IdentifiersParser.precedenceStarExpression(HiveParser_IdentifiersParser.java:8032)
+	at org.apache.hadoop.hive.ql.parse.HiveParser_IdentifiersParser.precedencePlusExpression(HiveParser_IdentifiersParser.java:8175)
+	at org.apache.hadoop.hive.ql.parse.HiveParser_IdentifiersParser.precedenceConcatenateExpression(HiveParser_IdentifiersParser.java:8314)
+	at org.apache.hadoop.hive.ql.parse.HiveParser_IdentifiersParser.precedenceAmpersandExpression(HiveParser_IdentifiersParser.java:8524)
+	at org.apache.hadoop.hive.ql.parse.HiveParser_IdentifiersParser.precedenceBitwiseOrExpression(HiveParser_IdentifiersParser.java:8661)
+	at org.apache.hadoop.hive.ql.parse.HiveParser_IdentifiersParser.precedenceSimilarExpressionMain(HiveParser_IdentifiersParser.java:9144)
+	at org.apache.hadoop.hive.ql.parse.HiveParser_IdentifiersParser.precedenceSimilarExpression(HiveParser_IdentifiersParser.java:9040)
+	at org.apache.hadoop.hive.ql.parse.HiveParser_IdentifiersParser.precedenceEqualExpression(HiveParser_IdentifiersParser.java:10254)
+	at org.apache.hadoop.hive.ql.parse.HiveParser_IdentifiersParser.precedenceNotExpression(HiveParser_IdentifiersParser.java:10541)
+	at org.apache.hadoop.hive.ql.parse.HiveParser_IdentifiersParser.precedenceAndExpression(HiveParser_IdentifiersParser.java:10650)
+	at org.apache.hadoop.hive.ql.parse.HiveParser_IdentifiersParser.precedenceOrExpression(HiveParser_IdentifiersParser.java:10791)
+	at org.apache.hadoop.hive.ql.parse.HiveParser_IdentifiersParser.expression(HiveParser_IdentifiersParser.java:6870)
+	at org.apache.hadoop.hive.ql.parse.HiveParser.expression(HiveParser.java:45074)
+	at org.apache.hadoop.hive.ql.parse.HiveParser_FromClauseParser.searchCondition(HiveParser_FromClauseParser.java:5986)
+	at org.apache.hadoop.hive.ql.parse.HiveParser_FromClauseParser.whereClause(HiveParser_FromClauseParser.java:5904)
+	at org.apache.hadoop.hive.ql.parse.HiveParser.whereClause(HiveParser.java:45324)
+	at org.apache.hadoop.hive.ql.parse.HiveParser.atomSelectStatement(HiveParser.java:39812)
+	at org.apache.hadoop.hive.ql.parse.HiveParser.selectStatement(HiveParser.java:40044)
+	at org.apache.hadoop.hive.ql.parse.HiveParser.regularBody(HiveParser.java:39690)
+	at org.apache.hadoop.hive.ql.parse.HiveParser.queryStatementExpressionBody(HiveParser.java:38900)
+	at org.apache.hadoop.hive.ql.parse.HiveParser.queryStatementExpression(HiveParser.java:38788)
+	at org.apache.hadoop.hive.ql.parse.HiveParser.execStatement(HiveParser.java:2396)
+	at org.apache.hadoop.hive.ql.parse.HiveParser.statement(HiveParser.java:1420)
+	at org.apache.hadoop.hive.ql.parse.ParseDriver.parse(ParseDriver.java:220)
+	at org.apache.hadoop.hive.ql.parse.ParseUtils.parse(ParseUtils.java:74)
+	at org.apache.hadoop.hive.ql.parse.ParseUtils.parse(ParseUtils.java:67)
+	at org.apache.hadoop.hive.ql.Driver.compile(Driver.java:616)
+	at org.apache.hadoop.hive.ql.Driver.compileInternal(Driver.java:1826)
+	at org.apache.hadoop.hive.ql.Driver.compileAndRespond(Driver.java:1773)
+	at org.apache.hadoop.hive.ql.Driver.compileAndRespond(Driver.java:1768)
+	at org.apache.hadoop.hive.ql.reexec.ReExecDriver.compileAndRespond(ReExecDriver.java:126)
+	at org.apache.hadoop.hive.ql.reexec.ReExecDriver.run(ReExecDriver.java:214)
+	at org.apache.hadoop.hive.cli.CliDriver.processLocalCmd(CliDriver.java:239)
+	at org.apache.hadoop.hive.cli.CliDriver.processCmd(CliDriver.java:188)
+	at org.apache.hadoop.hive.cli.CliDriver.processLine(CliDriver.java:402)
+	at org.apache.hadoop.hive.cli.CliDriver.executeDriver(CliDriver.java:821)
+	at org.apache.hadoop.hive.cli.CliDriver.run(CliDriver.java:759)
+	at org.apache.hadoop.hive.cli.CliDriver.main(CliDriver.java:683)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.hadoop.util.RunJar.run(RunJar.java:323)
+	at org.apache.hadoop.util.RunJar.main(RunJar.java:236)
+FAILED: ParseException line 1:44 cannot recognize input near 'is' 'between' '1500' in expression specification
+hive> select count(product) from s where price between 1500 and 3600;
+Query ID = hdoop_20230703000524_106dd065-ad7e-4847-b8a7-5d8edcafff5f
+Total jobs = 1
+Launching Job 1 out of 1
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1688319554503_0007, Tracking URL = http://ln-VirtualBox:8088/proxy/application_1688319554503_0007/
+Kill Command = /home/hdoop/hadoop-3.2.4/bin/mapred job  -kill job_1688319554503_0007
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+2023-07-03 00:05:39,141 Stage-1 map = 0%,  reduce = 0%
+2023-07-03 00:05:49,683 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 3.88 sec
+2023-07-03 00:05:58,074 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 7.61 sec
+MapReduce Total cumulative CPU time: 7 seconds 610 msec
+Ended Job = job_1688319554503_0007
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 1  Reduce: 1   Cumulative CPU: 7.61 sec   HDFS Read: 72410 HDFS Write: 103 SUCCESS
+Total MapReduce CPU Time Spent: 7 seconds 610 msec
+OK
+138
+Time taken: 34.3 seconds, Fetched: 1 row(s)
+hive> select count(product) from s where price>1500 and price<3600;
+Query ID = hdoop_20230703000627_26cb4ea8-8f8a-4276-891e-e53f634c5572
+Total jobs = 1
+Launching Job 1 out of 1
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1688319554503_0008, Tracking URL = http://ln-VirtualBox:8088/proxy/application_1688319554503_0008/
+Kill Command = /home/hdoop/hadoop-3.2.4/bin/mapred job  -kill job_1688319554503_0008
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+2023-07-03 00:06:39,982 Stage-1 map = 0%,  reduce = 0%
+2023-07-03 00:06:50,430 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 3.92 sec
+2023-07-03 00:06:59,833 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 6.95 sec
+MapReduce Total cumulative CPU time: 6 seconds 950 msec
+Ended Job = job_1688319554503_0008
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 1  Reduce: 1   Cumulative CPU: 6.95 sec   HDFS Read: 72795 HDFS Write: 101 SUCCESS
+Total MapReduce CPU Time Spent: 6 seconds 950 msec
+OK
+2
+Time taken: 33.826 seconds, Fetched: 1 row(s)
+hive> select * from s
+    > where country="United States" and pt="Mastercard"
+    > limit 5;
+OK
+Product1	1200	Mastercard	Federica e Andrea	Astoria	OR	United States
+Product1	1200	Mastercard	Fleur	Peoria	IL	United States
+Product1	1200	Mastercard	adam	Martin	TN	United States
+Product1	1200	Mastercard	Sean	Shavano Park	TX	United States
+Product1	1200	Mastercard	Katherine	New York	NY	United States
+Time taken: 0.368 seconds, Fetched: 5 row(s)
+hive> 
+
